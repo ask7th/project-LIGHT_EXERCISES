@@ -1,3 +1,130 @@
 <header class="header">
-  
+  <div class="container header-container">
+    <a class="header-logo" href="./index.html" aria-label="Your Energy home">
+      <img src="./images/header-logo.svg" width="132" height="24" alt="" />
+    </a>
+
+    <button
+      class="header-menu-toggle"
+      type="button"
+      aria-label="Open menu"
+      aria-expanded="false"
+      aria-controls="header-menu"
+    >
+      <svg
+        class="header-menu-icon header-menu-icon-open"
+        width="32"
+        height="32"
+        viewBox="0 0 32 32"
+        aria-hidden="true"
+      >
+        <path d="M28 13.3334H4" />
+        <path d="M28 8H4" />
+        <path d="M28 18.6666H4" />
+        <path d="M28 24H4" />
+      </svg>
+      <svg
+        class="header-menu-icon header-menu-icon-close"
+        width="18"
+        height="18"
+        viewBox="0 0 18 18"
+        aria-hidden="true"
+      >
+        <path d="M1 1 17 17M17 1 1 17" />
+      </svg>
+    </button>
+
+    <div class="header-menu" id="header-menu">
+      <nav class="header-navigation" aria-label="Main navigation">
+        <ul class="header-navigation-list">
+          <li class="header-navigation-item">
+            <a class="header-navigation-link" href="./index.html">Home</a>
+          </li>
+          <li class="header-navigation-item">
+            <a class="header-navigation-link" href="./favorites.html"
+              >Favorites</a
+            >
+          </li>
+        </ul>
+      </nav>
+
+      <ul class="header-social-list" aria-label="Social media">
+        <li class="header-social-item">
+          <a
+            class="header-social-link"
+            href="https://www.facebook.com/goITclub/"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="GoIT on Facebook"
+          >
+            <svg
+              width="8"
+              height="20"
+              viewBox="0 0 8 20"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M6.93 0.0700003C7.14 0.0700003 7.35 0.0700003 7.77 0.0700003V3.22C7.56 3.22 7.14 3.22 6.72 3.22C6.3 3.22 5.88 3.22 5.67 3.43C5.46 3.64 5.45999 3.85 5.45999 4.34C5.45999 4.76 5.45999 5.04 5.45999 5.46H7.77V8.12H5.45999V19.67H1.89001V8.05H0V5.39H1.89001V4.48C1.89001 2.94 2.1 1.82 2.52 1.33C3.15 0.42 4.41 0 6.3 0C6.51 0.07 6.72 0.0700003 6.93 0.0700003Z"
+                fill="#242424"
+              />
+            </svg>
+          </a>
+        </li>
+        <li class="header-social-item">
+          <a
+            class="header-social-link"
+            href="https://www.instagram.com/goitclub/"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="GoIT on Instagram"
+          >
+            <svg
+              width="23"
+              height="23"
+              viewBox="0 0 23 23"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+              aria-hidden="true"
+            >
+              <path
+                d="M22.3279 6.61147C22.3142 5.67141 22.14 4.7388 21.8067 3.85959C21.2233 2.35822 20.0354 1.17104 18.5315 0.589866C17.662 0.263267 16.7428 0.0881695 15.8124 0.0683003C14.6157 0.014902 14.2363 0 11.1988 0C8.16117 0 7.77183 8.32707e-08 6.58392 0.0683003C5.65473 0.0881695 4.7355 0.263267 3.86602 0.589866C2.36215 1.17104 1.17299 2.35822 0.590848 3.85959C0.263705 4.72762 0.0870724 5.64533 0.0696579 6.57297C0.0161706 7.76884 0 8.1476 0 11.1801C0 14.2127 -9.26771e-09 14.6001 0.0696579 15.7873C0.0883163 16.7162 0.263705 17.6326 0.590848 18.5032C1.17423 20.0033 2.36215 21.1905 3.86726 21.7716C4.73301 22.1094 5.65224 22.3007 6.58516 22.3305C7.78303 22.3839 8.16242 22.4 11.2 22.4C14.2376 22.4 14.6269 22.4 15.8148 22.3305C16.744 22.3118 17.6633 22.1367 18.534 21.8101C20.0378 21.2277 21.2258 20.0405 21.8092 18.5404C22.1363 17.6711 22.3117 16.7547 22.3303 15.8245C22.3838 14.6299 22.4 14.2512 22.4 11.2174C22.3975 8.18486 22.3975 7.79989 22.3279 6.61147ZM11.1913 16.9149C8.01439 16.9149 5.44078 14.3455 5.44078 11.1739C5.44078 8.00231 8.01439 5.43298 11.1913 5.43298C14.3657 5.43298 16.9418 8.00231 16.9418 11.1739C16.9418 14.3455 14.3657 16.9149 11.1913 16.9149ZM17.1707 6.55931C16.4281 6.55931 15.8298 5.96075 15.8298 5.22062C15.8298 4.4805 16.4281 3.88194 17.1707 3.88194C17.9108 3.88194 18.5104 4.4805 18.5104 5.22062C18.5104 5.96075 17.9108 6.55931 17.1707 6.55931Z"
+                fill="#242424"
+              />
+              <path
+                d="M3.5035 7.007C5.43843 7.007 7.007 5.43843 7.007 3.5035C7.007 1.56857 5.43843 0 3.5035 0C1.56857 0 0 1.56857 0 3.5035C0 5.43843 1.56857 7.007 3.5035 7.007Z"
+                fill="#242424"
+                transform="translate(7.7 7.7)"
+              />
+            </svg>
+          </a>
+        </li>
+        <li class="header-social-item">
+          <a
+            class="header-social-link"
+            href="https://www.youtube.com/c/GoIT"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="GoIT on YouTube"
+          >
+            <svg
+              width="25"
+              height="18"
+              viewBox="0 0 25 18"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+              aria-hidden="true"
+            >
+              <path
+                d="M19.6 0.14C18.41 0.0699999 15.96 0 12.25 0H11.76C8.18999 0 5.81003 0.0699998 4.62003 0.21C3.01003 0.35 1.88999 0.77 1.25999 1.33C0.699991 1.82 0.280009 2.73 0.140009 3.92C0.0700085 4.69 0 6.3 0 8.75V9.1C0 11.41 0.0699915 13.02 0.209991 13.79C0.419991 14.91 0.770026 15.75 1.47003 16.24C2.17003 16.8 3.36001 17.15 5.04001 17.29C6.23001 17.36 8.68001 17.43 12.39 17.43H12.88C16.45 17.43 18.83 17.36 20.02 17.22C21.63 17.08 22.75 16.66 23.38 16.1C23.94 15.61 24.36 14.7 24.5 13.51C24.57 12.74 24.64 11.13 24.64 8.68V8.33C24.64 6.02 24.57 4.41 24.43 3.64C24.22 2.52 23.87 1.68 23.17 1.19C22.47 0.63 21.28 0.28 19.6 0.14ZM16.87 8.75L9.17003 13.37V4.13L16.87 8.75Z"
+                fill-rule="evenodd"
+                clip-rule="evenodd"
+                fill="#242424"
+              />
+            </svg>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
 </header>
