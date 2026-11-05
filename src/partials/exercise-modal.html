@@ -1,0 +1,66 @@
+<dialog class="exercise-modal" aria-labelledby="exercise-modal-title">
+  <button class="exercise-modal-close" type="button" aria-label="Close exercise details">
+    <svg viewBox="0 0 24 24" aria-hidden="true">
+      <use href="./sprite.svg#icon-close"></use>
+    </svg>
+  </button>
+
+  <div class="exercise-modal-content">
+    <div class="exercise-modal-media-wrap">
+      <div class="exercise-modal-media-placeholder" aria-hidden="true">Loading exercise…</div>
+      <img class="exercise-modal-media" alt="" hidden>
+    </div>
+
+    <section class="exercise-modal-details">
+      <h2 class="exercise-modal-title" id="exercise-modal-title"></h2>
+      <div class="exercise-modal-rating" aria-label="Exercise rating">
+        <span class="exercise-modal-rating-value"></span>
+        <span class="exercise-modal-stars" aria-hidden="true">
+          <span class="exercise-modal-stars-row">
+            <svg viewBox="0 0 24 24"><use href="./sprite.svg#icon-star"></use></svg>
+            <svg viewBox="0 0 24 24"><use href="./sprite.svg#icon-star"></use></svg>
+            <svg viewBox="0 0 24 24"><use href="./sprite.svg#icon-star"></use></svg>
+            <svg viewBox="0 0 24 24"><use href="./sprite.svg#icon-star"></use></svg>
+            <svg viewBox="0 0 24 24"><use href="./sprite.svg#icon-star"></use></svg>
+          </span>
+          <span class="exercise-modal-stars-filled">
+            <svg viewBox="0 0 24 24"><use href="./sprite.svg#icon-star"></use></svg>
+            <svg viewBox="0 0 24 24"><use href="./sprite.svg#icon-star"></use></svg>
+            <svg viewBox="0 0 24 24"><use href="./sprite.svg#icon-star"></use></svg>
+            <svg viewBox="0 0 24 24"><use href="./sprite.svg#icon-star"></use></svg>
+            <svg viewBox="0 0 24 24"><use href="./sprite.svg#icon-star"></use></svg>
+          </span>
+        </span>
+      </div>
+      <div class="exercise-modal-divider"></div>
+
+      <dl class="exercise-modal-stats">
+        <div class="exercise-modal-stat">
+          <dt>Target</dt>
+          <dd data-field="target"></dd>
+        </div>
+        <div class="exercise-modal-stat">
+          <dt>Body Part</dt>
+          <dd data-field="bodyPart"></dd>
+        </div>
+        <div class="exercise-modal-stat">
+          <dt>Popular</dt>
+          <dd data-field="popularity"></dd>
+        </div>
+        <div class="exercise-modal-stat">
+          <dt>Burned Calories</dt>
+          <dd><span data-field="burnedCalories"></span> / 3 min</dd>
+        </div>
+      </dl>
+
+      <p class="exercise-modal-description"></p>
+      <p class="exercise-modal-error" role="status" hidden></p>
+      <button class="exercise-modal-favorite" type="button" aria-pressed="false">
+        <span class="exercise-modal-favorite-label">Add to favorites</span>
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <use href="./sprite.svg#icon-heart" data-favorite-icon></use>
+        </svg>
+      </button>
+    </section>
+  </div>
+</dialog>
