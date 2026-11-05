@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#f4f4f4" />
+    <title>Favorites | Your Energy</title>
+    <link rel="stylesheet" href="./css/favorites.css" />
+    <script type="module" src="./favorites.js"></script>
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="page-container header-content">
+        <a class="brand" href="./index.html" aria-label="Your Energy home">YOUR ENERGY<span class="brand-accent">●</span></a>
+        <nav class="site-nav" aria-label="Main navigation">
+          <a href="./index.html">Home</a>
+          <a href="./favorites.html" aria-current="page">Favorites</a>
+        </nav>
+      </div>
+    </header>
+
+    <main class="page-container favorites-page">
+      <section class="favorites-heading" aria-labelledby="favorites-title">
+        <p class="eyebrow">Your personal workout collection</p>
+        <h1 id="favorites-title">Favorites<span class="heading-dot">.</span></h1>
+      </section>
+
+      <div class="favorites-layout">
+        <aside class="favorites-aside" aria-label="Daily inspiration">
+          <section class="quote-panel" aria-labelledby="quote-heading">
+            <h2 id="quote-heading" class="panel-heading">Quote of the day</h2>
+            <blockquote id="quote-text" class="quote-text">Keep moving. Every step matters.</blockquote>
+            <p id="quote-author" class="quote-author">Your Energy</p>
+          </section>
+          <section class="daily-panel">
+            <div class="daily-number">110<span>min</span></div>
+            <h2 class="panel-heading">Daily exercise</h2>
+            <p>Make movement part of your routine. Choose the exercises you enjoy and keep going.</p>
+          </section>
+        </aside>
+
+        <section class="favorites-content" aria-labelledby="exercise-heading">
+          <div class="section-title-row">
+            <h2 id="exercise-heading">Your exercises</h2>
+            <span id="favorites-count" class="favorites-count" aria-live="polite">0 exercises</span>
+          </div>
+          <div id="favorites-message" class="favorites-message" role="status" hidden></div>
+          <div id="favorites-list" class="exercise-grid" aria-live="polite"></div>
+          <div id="favorites-empty" class="empty-state" hidden>
+            <div class="empty-icon" aria-hidden="true">♡</div>
+            <h3>You have no favorite exercises yet</h3>
+            <p>Go to Home and add exercises you like. They will appear here.</p>
+            <a class="primary-link" href="./index.html">Explore exercises <span aria-hidden="true">→</span></a>
+          </div>
+        </section>
+      </div>
+    </main>
+
+    <footer class="site-footer">
+      <div class="page-container footer-content">
+        <a class="brand" href="./index.html">YOUR ENERGY<span class="brand-accent">●</span></a>
+        <small>Move your body. Feel your energy.</small>
+      </div>
+    </footer>
+
+    <dialog id="exercise-dialog" class="exercise-dialog" aria-labelledby="dialog-title">
+      <button type="button" class="dialog-close" id="dialog-close" aria-label="Close exercise details">×</button>
+      <div id="dialog-content"></div>
+    </dialog>
+  </body>
+</html>
