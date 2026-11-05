@@ -1,5 +1,5 @@
 const API_URL = 'https://your-energy.b.goit.study/api/exercises/';
-const FAVORITES_KEY = 'favorites';
+const FAVORITES_KEY = 'energy-favorites';
 
 function getExerciseId(exercise) {
   return exercise._id || exercise.id || '';
@@ -60,7 +60,9 @@ export function initExerciseModal() {
   const favoriteLabel = modal.querySelector('.exercise-modal-favorite-label');
   const favoriteIcon = modal.querySelector('[data-favorite-icon]');
   const image = modal.querySelector('.exercise-modal-media');
-  const imagePlaceholder = modal.querySelector('.exercise-modal-media-placeholder');
+  const imagePlaceholder = modal.querySelector(
+    '.exercise-modal-media-placeholder'
+  );
   const errorMessage = modal.querySelector('.exercise-modal-error');
   const currentExerciseTitle = modal.querySelector('.exercise-modal-title');
   const ratingValue = modal.querySelector('.exercise-modal-rating-value');
@@ -76,7 +78,9 @@ export function initExerciseModal() {
   function showFavoriteButton(exercise) {
     const exerciseId = getExerciseId(exercise);
     const favorites = getFavorites();
-    const isFavorite = favorites.some(item => getExerciseId(item) === exerciseId);
+    const isFavorite = favorites.some(
+      item => getExerciseId(item) === exerciseId
+    );
 
     favoriteLabel.textContent = isFavorite
       ? 'Remove from favorites'
@@ -156,13 +160,20 @@ export function initExerciseModal() {
     }
 
     const favorites = getFavorites();
-    const isFavorite = favorites.some(item => getExerciseId(item) === exerciseId);
+    const isFavorite = favorites.some(
+      item => getExerciseId(item) === exerciseId
+    );
     const updatedFavorites = isFavorite
       ? favorites.filter(item => getExerciseId(item) !== exerciseId)
       : [...favorites, currentExercise];
 
     localStorage.setItem(FAVORITES_KEY, JSON.stringify(updatedFavorites));
     showFavoriteButton(currentExercise);
+    document.dispatchEvent(
+      new CustomEvent('favorites:change', {
+        detail: { favorites: updatedFavorites },
+      })
+    );
     document.dispatchEvent(
       new CustomEvent('favorites:changed', { detail: updatedFavorites })
     );
@@ -205,5 +216,13 @@ export function initExerciseModal() {
 
   document.addEventListener('exercise:open-modal', event => {
     openModal(event.detail);
+  });
+
+  document.addEventListener('exercise:open', event => {
+    const exerciseId = event.detail?.id || event.detail;
+    if (!exerciseId) return;
+
+    event.preventDefault();
+    openModal(exerciseId);
   });
 }
