@@ -1,3 +1,4 @@
+import './js/header/header.js';
 /** Favorites page for Your Energy.
  * Storage contract (shared with the exercise modal):
  * key: energy-favorites

@@ -99,3 +99,13 @@ These dependencies do not prevent independent testing of the Favorites page.
 The requirements assigned to Issue #10 have passed local functional testing.
 
 **Full-project integration remains subject to team review.**
+
+## Integration update
+
+- Shared header markup and CSS are included.
+- Shared header JavaScript is imported by the Favorites entry point.
+- The Favorites Start button dispatches `exercise:open` with `{ id }`.
+- The shared exercise modal supports this event contract.
+- The standalone exercise modal remains available as a fallback until
+  the team confirms complete shared-modal integration.
+- Full application and mobile-menu testing remain necessary.
