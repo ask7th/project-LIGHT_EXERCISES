@@ -13,3 +13,6 @@
 @import url('./header.css');
 @import url('./hero.css');
 @import url('./footer.css');
+
+/* Favorites */
+@import url('./favorites.css');

@@ -1,4 +1,3 @@
-import './js/header/header.js';
 /** Favorites page for Your Energy.
  * Storage contract (shared with the exercise modal):
  * key: energy-favorites
@@ -20,7 +19,11 @@ const dialogContent = document.querySelector('#dialog-content');
 function getFavorites() {
   try {
     const stored = JSON.parse(localStorage.getItem(STORAGE_KEY) ?? '[]');
-    return Array.isArray(stored) ? stored.filter(item => item && typeof item === 'object' && (item._id || item.id)) : [];
+    return Array.isArray(stored)
+      ? stored.filter(
+          item => item && typeof item === 'object' && (item._id || item.id)
+        )
+      : [];
   } catch (error) {
     console.warn('Could not read Favorites:', error);
     return [];
@@ -30,12 +33,16 @@ function getFavorites() {
 function saveFavorites(items) {
   try {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(items));
-    document.dispatchEvent(new CustomEvent('favorites:change', {
-      detail: { favorites: items },
-    }));
+    document.dispatchEvent(
+      new CustomEvent('favorites:change', {
+        detail: { favorites: items },
+      })
+    );
     return true;
   } catch (error) {
-    showMessage('Unable to update favorites in this browser. Check storage permissions.');
+    showMessage(
+      'Unable to update favorites in this browser. Check storage permissions.'
+    );
     console.error('Could not save Favorites:', error);
     return false;
   }
@@ -58,34 +65,58 @@ function createElement(tag, className, text) {
 }
 
 function safeText(value, fallback = '—') {
-  return value === undefined || value === null || value === '' ? fallback : String(value);
+  return value === undefined || value === null || value === ''
+    ? fallback
+    : String(value);
 }
 
 function createExerciseCard(exercise) {
   const id = String(exercise._id ?? exercise.id);
   const card = createElement('article', 'exercise-card');
   const cardTop = createElement('div', 'exercise-card-top');
-  const title = createElement('h3', 'exercise-name', safeText(exercise.name, 'Exercise'));
+  const title = createElement(
+    'h3',
+    'exercise-name',
+    safeText(exercise.name, 'Exercise')
+  );
   const remove = createElement('button', 'remove-button', '×');
   remove.type = 'button';
   remove.dataset.action = 'remove';
   remove.dataset.id = id;
-  remove.setAttribute('aria-label', `Remove ${safeText(exercise.name, 'exercise')} from favorites`);
+  remove.setAttribute(
+    'aria-label',
+    `Remove ${safeText(exercise.name, 'exercise')} from favorites`
+  );
   cardTop.append(title, remove);
 
   const stats = createElement('div', 'exercise-stats');
-  const calories = createElement('p', '', `Burned calories: ${safeText(exercise.burnedCalories)}`);
-  const bodyPart = createElement('p', '', `Body part: ${safeText(exercise.bodyPart)}`);
+  const calories = createElement(
+    'p',
+    '',
+    `Burned calories: ${safeText(exercise.burnedCalories)}`
+  );
+  const bodyPart = createElement(
+    'p',
+    '',
+    `Body part: ${safeText(exercise.bodyPart)}`
+  );
   const target = createElement('p', '', `Target: ${safeText(exercise.target)}`);
   stats.append(calories, bodyPart, target);
 
   const cardBottom = createElement('div', 'exercise-card-bottom');
-  const rating = createElement('span', 'rating', `★ ${safeText(exercise.rating, 'N/A')}`);
+  const rating = createElement(
+    'span',
+    'rating',
+    `★ ${safeText(exercise.rating, 'N/A')}`
+  );
   const start = createElement('button', 'start-button', 'Start →');
   start.type = 'button';
   start.dataset.action = 'open';
   start.dataset.id = id;
-  start.setAttribute('aria-label', `Open details for ${safeText(exercise.name, 'exercise')}`);
+  start.setAttribute(
+    'aria-label',
+    `Open details for ${safeText(exercise.name, 'exercise')}`
+  );
   cardBottom.append(rating, start);
   card.append(cardTop, stats, cardBottom);
   return card;
@@ -112,20 +143,29 @@ function removeFavorite(id) {
 // The shared details module can take ownership by calling event.preventDefault().
 async function openExercise(id) {
   const event = new CustomEvent('exercise:open', {
-    detail: { id }, cancelable: true,
+    detail: { id },
+    cancelable: true,
   });
   document.dispatchEvent(event);
   if (event.defaultPrevented) return;
 
   if (!dialog || typeof dialog.showModal !== 'function') return;
-  dialogContent.replaceChildren(createElement('p', '', 'Loading exercise details…'));
+  dialogContent.replaceChildren(
+    createElement('p', '', 'Loading exercise details…')
+  );
   dialog.showModal();
   try {
-    const response = await fetch(`${API_BASE}/exercises/${encodeURIComponent(id)}`);
+    const response = await fetch(
+      `${API_BASE}/exercises/${encodeURIComponent(id)}`
+    );
     if (!response.ok) throw new Error(`HTTP ${response.status}`);
     const exercise = await response.json();
     if (!dialog.open) return;
-    const heading = createElement('h2', '', safeText(exercise.name, 'Exercise details'));
+    const heading = createElement(
+      'h2',
+      '',
+      safeText(exercise.name, 'Exercise details')
+    );
     heading.id = 'dialog-title';
     const fields = [
       ['Rating', exercise.rating],
@@ -138,11 +178,19 @@ async function openExercise(id) {
     ];
     const body = createElement('div', 'dialog-fields');
     for (const [label, value] of fields) {
-      if (value != null && value !== '') body.append(createElement('p', '', `${label}: ${value}`));
+      if (value != null && value !== '')
+        body.append(createElement('p', '', `${label}: ${value}`));
     }
-    const description = createElement('p', 'dialog-description', safeText(exercise.description, 'No description available.'));
+    const description = createElement(
+      'p',
+      'dialog-description',
+      safeText(exercise.description, 'No description available.')
+    );
     dialogContent.replaceChildren(heading, body, description);
-    if (typeof exercise.gifUrl === 'string' && /^https:\/\//.test(exercise.gifUrl)) {
+    if (
+      typeof exercise.gifUrl === 'string' &&
+      /^https:\/\//.test(exercise.gifUrl)
+    ) {
       const img = document.createElement('img');
       img.src = exercise.gifUrl;
       img.alt = `Demonstration of ${safeText(exercise.name, 'exercise')}`;
@@ -152,7 +200,14 @@ async function openExercise(id) {
     }
   } catch (error) {
     console.error('Could not load exercise details:', error);
-    if (dialog.open) dialogContent.replaceChildren(createElement('p', '', 'Exercise details are unavailable. Please try again.'));
+    if (dialog.open)
+      dialogContent.replaceChildren(
+        createElement(
+          'p',
+          '',
+          'Exercise details are unavailable. Please try again.'
+        )
+      );
   }
 }
 
@@ -165,7 +220,9 @@ async function loadDailyQuote() {
   try {
     const cached = JSON.parse(localStorage.getItem(cacheKey) || 'null');
     if (cached && cached.date === today && cached.quote) quote = cached.quote;
-  } catch { /* use network instead */ }
+  } catch {
+    /* use network instead */
+  }
   if (!quote) {
     try {
       const response = await fetch(`${API_BASE}/quote`);
@@ -181,22 +238,38 @@ async function loadDailyQuote() {
   if (quote.author) author.textContent = quote.author;
 }
 
-list?.addEventListener('click', event => {
-  const button = event.target.closest('button[data-action]');
-  if (!button || !list.contains(button)) return;
-  const { action, id } = button.dataset;
-  if (action === 'remove') removeFavorite(id);
-  if (action === 'open') openExercise(id);
-});
+let initialized = false;
+let quoteLoaded = false;
 
-document.addEventListener('favorites:change', renderFavorites);
-window.addEventListener('storage', event => {
-  if (event.key === STORAGE_KEY) renderFavorites();
-});
-document.querySelector('#dialog-close')?.addEventListener('click', () => dialog.close());
-dialog?.addEventListener('click', event => {
-  if (event.target === dialog) dialog.close();
-});
+export function initFavorites() {
+  if (initialized || !list || !empty || !count || !message) return;
+  initialized = true;
 
-renderFavorites();
-loadDailyQuote();
+  list.addEventListener('click', event => {
+    const button = event.target.closest('button[data-action]');
+    if (!button || !list.contains(button)) return;
+    const { action, id } = button.dataset;
+    if (action === 'remove') removeFavorite(id);
+    if (action === 'open') openExercise(id);
+  });
+
+  document.addEventListener('favorites:change', renderFavorites);
+  window.addEventListener('storage', event => {
+    if (event.key === STORAGE_KEY) renderFavorites();
+  });
+  document
+    .querySelector('#dialog-close')
+    ?.addEventListener('click', () => dialog.close());
+  dialog?.addEventListener('click', event => {
+    if (event.target === dialog) dialog.close();
+  });
+}
+
+export function showFavorites() {
+  initFavorites();
+  renderFavorites();
+  if (!quoteLoaded) {
+    quoteLoaded = true;
+    loadDailyQuote();
+  }
+}
