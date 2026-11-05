@@ -138,6 +138,9 @@
   display: flex;
   flex-wrap: wrap;
   gap: 14px 12px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
 }
 
 .exercise-modal-stat {
@@ -145,13 +148,15 @@
   min-width: 0;
 }
 
-.exercise-modal-stat dt {
+.exercise-modal-stat > span:first-child {
+  display: block;
   margin-bottom: 2px;
   color: rgb(244 244 244 / 40%);
   font-size: 12px;
 }
 
-.exercise-modal-stat dd {
+.exercise-modal-stat > span:last-child {
+  display: block;
   overflow-wrap: anywhere;
   color: #f4f4f4;
   font-size: 14px;
