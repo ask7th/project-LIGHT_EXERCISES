@@ -7,17 +7,27 @@ export async function fetchAndRenderQuote() {
   
   if (!textEl || !authorEl) return;
 
-  const today = new Date().toISOString().split('T')[0];
-  const savedData = JSON.parse(localStorage.getItem(STORAGE_KEY));
+  const date = new Date();
+  const today = [
+    date.getFullYear(),
+    String(date.getMonth() + 1).padStart(2, '0'),
+    String(date.getDate()).padStart(2, '0'),
+  ].join('-');
 
-  // Перевіряємо, чи є збережена цитата за сьогодні
+  // Безпечне читання з localStorage
+  let savedData = null;
+  try {
+    savedData = JSON.parse(localStorage.getItem(STORAGE_KEY));
+  } catch (error) {
+    console.error('Invalid quote data in localStorage:', error);
+  }
+
   if (savedData && savedData.date === today) {
     textEl.textContent = savedData.quote;
     authorEl.textContent = savedData.author;
     return;
   }
 
-  // Якщо даних немає або дата інша
   try {
     const response = await fetch(QUOTE_URL);
     if (!response.ok) {
@@ -30,7 +40,6 @@ export async function fetchAndRenderQuote() {
     textEl.textContent = quote;
     authorEl.textContent = author;
 
-    // Зберігаємо в localStorage
     localStorage.setItem(STORAGE_KEY, JSON.stringify({
       date: today,
       quote,
