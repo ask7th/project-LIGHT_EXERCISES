@@ -1,112 +1,149 @@
-const BASE_URL = 'https://your-energy.b.goit.study/api/filters';
-const listEl = document.querySelector('.js-categories-list');
-const filterBtns = document.querySelectorAll('.filter-btn');
-const paginationContainer = document.querySelector('.js-pagination');
+import { getFilters } from './api.js';
+import { EVENTS } from './constants.js';
+import { showLoader, hideLoader } from './loader.js';
+
+const categoriesContainer = document.getElementById('categories-container');
+const categoriesWrapper = document.querySelector('.categories-wrapper');
+const exercisesWrapper = document.querySelector('.exercises-wrapper');
+const searchForm = document.getElementById('search-form');
+const paginationContainer = document.getElementById('pagination-container');
 
 let currentFilter = 'Muscles';
 let currentPage = 1;
 
-async function fetchCategories(filter, page = 1, limit = 12) {
-  try {
-    const response = await fetch(`${BASE_URL}?filter=${filter}&page=${page}&limit=${limit}`);
-    if (!response.ok) {
-      throw new Error('Failed to fetch categories');
+document.addEventListener(EVENTS.FILTER_CHANGED, async (e) => {
+    currentFilter = e.detail.filter;
+    currentPage = 1;
+
+    if (exercisesWrapper) exercisesWrapper.classList.add('visually-hidden');
+    if (categoriesWrapper) categoriesWrapper.classList.remove('visually-hidden');
+    if (searchForm) searchForm.classList.add('visually-hidden');
+
+    const categorySlash = document.getElementById('category-slash');
+    const selectedCategoryName = document.getElementById('selected-category-name');
+    if (categorySlash) categorySlash.classList.add('visually-hidden');
+    if (selectedCategoryName) selectedCategoryName.textContent = '';
+
+    await fetchAndRenderCategories();
+});
+
+async function fetchAndRenderCategories() {
+    try {
+        showLoader();
+
+        const isMobile = window.innerWidth < 768;
+        const limit = isMobile ? 9 : 12;
+
+        const data = await getFilters({
+            filter: currentFilter,
+            page: currentPage,
+            limit,
+        });
+
+        if (!data || data.results.length === 0) {
+            categoriesContainer.innerHTML = '<p class="no-results">No categories found.</p>';
+            paginationContainer.innerHTML = '';
+            return;
+        }
+
+        renderCategoryCards(data.results);
+        renderPagination(data.totalPages);
+    } catch (err) {
+        console.error(err);
+    } finally {
+        hideLoader();
     }
-    const data = await response.json();
-    return data; // Повертаємо весь об'єкт (results, page, totalPages тощо)
-  } catch (error) {
-    console.error('Error fetching categories:', error);
-    return null;
-  }
 }
 
-async function renderCategories(filter, page = 1) {
-  if (!listEl) return;
-  
-  listEl.innerHTML = '<li class="loading-text">Loading...</li>';
+function renderCategoryCards(categories) {
+    categoriesContainer.innerHTML = categories
+        .map(({ filter, name, imgURL }) => `
+            <li class="category-item">
+                <button class="category-card-btn" data-filter="${filter}" data-name="${name}">
+                    <img src="${imgURL}" alt="${name}" class="category-img" loading="lazy" />
+                    <div class="category-content">
+                        <h3 class="category-name">${name}</h3>
+                        <p class="category-label">${filter}</p>
+                    </div>
+                </button>
+            </li>
+        `)
+        .join('');
 
-  const data = await fetchCategories(filter, page);
-
-  if (!data || !data.results || data.results.length === 0) {
-    listEl.innerHTML = '<li class="error-text">No categories found for this filter.</li>';
-    if (paginationContainer) paginationContainer.innerHTML = '';
-    return;
-  }
-
-  const { results, totalPages, page: resPage } = data;
-  currentPage = Number(resPage);
-
-  // Рендеринг сітки карток
-  const markup = results
-    .map(
-      ({ name, filter, imgURL }) => `
-    <li class="category-item" style="background-image: url('${imgURL}')" data-name="${name}">
-      <div class="category-content">
-        <h3 class="category-item-title">${name}</h3>
-        <p class="category-item-subtitle">${filter}</p>
-      </div>
-    </li>
-  `
-    )
-    .join('');
-
-  listEl.innerHTML = markup;
-
-  // Рендеринг пагінації
-  renderPagination(currentPage, totalPages);
+    categoriesContainer.querySelectorAll('.category-card-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+            document.dispatchEvent(new CustomEvent(EVENTS.CATEGORY_SELECTED, {
+                detail: {
+                    filter: btn.dataset.filter,
+                    category: btn.dataset.name,
+                }
+            }));
+        });
+    });
 }
 
-function renderPagination(currentPage, totalPages) {
-  if (!paginationContainer) return;
+function getPageNumbers(current, total) {
+    if (total <= 4) return Array.from({ length: total }, (_, i) => i + 1);
 
-  if (totalPages <= 1) {
-    paginationContainer.innerHTML = '';
-    return;
-  }
+    let start = Math.max(1, current - 1);
+    let end = Math.min(total, start + 2);
+    start = Math.max(1, end - 2);
 
-  let markup = '';
-  for (let i = 1; i <= totalPages; i++) {
-    markup += `
-      <button class="page-btn ${i === Number(currentPage) ? 'active' : ''}" data-page="${i}">
-        ${i}
-      </button>
+    const pages = [];
+    if (start > 1) pages.push('...');
+    for (let i = start; i <= end; i++) pages.push(i);
+    if (end < total) pages.push('...');
+    return pages;
+}
+
+function renderPagination(totalPages) {
+    if (!totalPages || totalPages <= 1) {
+        paginationContainer.innerHTML = '';
+        return;
+    }
+
+    const isFirst = currentPage === 1;
+    const isLast = currentPage === totalPages;
+    const pages = getPageNumbers(currentPage, totalPages);
+
+    paginationContainer.innerHTML = `
+        <button class="pagination-nav-btn" type="button" data-action="first" ${isFirst ? 'disabled' : ''} aria-label="First page">«</button>
+        <button class="pagination-nav-btn" type="button" data-action="prev" ${isFirst ? 'disabled' : ''} aria-label="Previous page">‹</button>
+        ${pages.map(page =>
+            page === '...'
+                ? `<span class="pagination-ellipsis">...</span>`
+                : `<button class="pagination-btn ${page === currentPage ? 'active' : ''}" type="button" data-page="${page}">${page}</button>`
+        ).join('')}
+        <button class="pagination-nav-btn" type="button" data-action="next" ${isLast ? 'disabled' : ''} aria-label="Next page">›</button>
+        <button class="pagination-nav-btn" type="button" data-action="last" ${isLast ? 'disabled' : ''} aria-label="Last page">»</button>
     `;
-  }
-  
-  paginationContainer.innerHTML = markup;
+
+    paginationContainer.querySelectorAll('.pagination-btn').forEach(btn => {
+        btn.addEventListener('click', async () => {
+            currentPage = Number(btn.dataset.page);
+            await fetchAndRenderCategories();
+        });
+    });
+
+    paginationContainer.querySelectorAll('.pagination-nav-btn:not([disabled])').forEach(btn => {
+        btn.addEventListener('click', async () => {
+            const action = btn.dataset.action;
+            if (action === 'first') currentPage = 1;
+            else if (action === 'prev') currentPage = Math.max(1, currentPage - 1);
+            else if (action === 'next') currentPage = Math.min(totalPages, currentPage + 1);
+            else if (action === 'last') currentPage = totalPages;
+            await fetchAndRenderCategories();
+        });
+    });
 }
 
-export function initCategories() {
-  renderCategories(currentFilter, currentPage);
-
-  // Слухач подій на таби-фільтри
-  filterBtns.forEach(btn => {
-    btn.addEventListener('click', e => {
-      filterBtns.forEach(b => b.classList.remove('active'));
-      
-      const selectedBtn = e.currentTarget;
-      selectedBtn.classList.add('active');
-
-      currentFilter = selectedBtn.dataset.filter;
-      currentPage = 1; // При зміні фільтра завжди скидаємо на 1-шу сторінку
-
-      renderCategories(currentFilter, currentPage);
-    });
-  });
-
-  // Слухач подій на кліки по пагінації
-  if (paginationContainer) {
-    paginationContainer.addEventListener('click', e => {
-      if (e.target.tagName !== 'BUTTON') return;
-
-      const selectedPage = Number(e.target.dataset.page);
-      if (selectedPage === currentPage) return; // Якщо клікнули на ту ж сторінку — нічого не робимо
-
-      currentPage = selectedPage;
-      renderCategories(currentFilter, currentPage);
-      
-      // Плавний скролл до верху секції при зміні сторінки (опціонально для зручності)
-      listEl.scrollIntoView({ behavior: 'smooth' });
-    });
-  }
-}
+let resizeTimer;
+window.addEventListener('resize', () => {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(() => {
+        if (categoriesWrapper && !categoriesWrapper.classList.contains('visually-hidden')) {
+            currentPage = 1;
+            fetchAndRenderCategories();
+        }
+    }, 300);
+});

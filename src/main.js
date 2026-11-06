@@ -1,6 +1,8 @@
 import './js/header/header.js';
-import { fetchAndRenderQuote } from './js/quote.js';
-import { initCategories } from './js/categories.js';
+import spriteUrl from './images/sprite.svg';
+window.__SPRITE_URL__ = spriteUrl;
 
-fetchAndRenderQuote();
-initCategories();
+import './js/filters.js';
+import './js/categories.js';
+import './js/exercises.js';
+import './js/quote.js';

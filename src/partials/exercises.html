@@ -1,57 +1,84 @@
-<section class="home-section container">
- <div class="exercises-header">
-    <h2 class="section-title">Exercises</h2>
-    <div class="filters-container">
-      <button class="filter-btn active" data-filter="Muscles">Muscles</button>
-      <button class="filter-btn" data-filter="Body parts">Body parts</button>
-      <button class="filter-btn" data-filter="Equipment">Equipment</button>
+<section class="exercises-section" id="exercises" data-section="catalog">
+  <div class="container">
+
+    <div class="exercises-header-wrapper">
+
+      <h2 class="exercises-main-title">
+        Exercises
+        <span id="category-slash" class="visually-hidden"> /</span>
+        <span id="selected-category-name" class="exercises-category-subtitle"></span>
+      </h2>
+
+      <div class="exercises-controls">
+
+        <form class="search-form visually-hidden" id="search-form" role="search" aria-label="Search exercises">
+          <div class="search-input-wrapper">
+            <input
+              type="text"
+              name="query"
+              id="search-input"
+              placeholder="Search"
+              class="search-input"
+              autocomplete="off"
+            />
+            <button type="button" class="search-clear-btn" id="search-clear-btn" aria-label="Clear search" hidden>
+              <svg width="12" height="12" aria-hidden="true">
+                <use href="/images/sprite.svg#icon-close"></use>
+              </svg>
+            </button>
+            <button type="submit" class="search-submit-btn" aria-label="Search">
+              <svg width="18" height="18" aria-hidden="true">
+                <use href="/images/sprite.svg#icon-search"></use>
+              </svg>
+            </button>
+          </div>
+        </form>
+
+        <nav class="exercises-filters" aria-label="Exercise filters">
+          <ul class="filter-list" id="filter-list" role="list">
+            <li class="filter-item">
+              <button class="filter-btn active" type="button" data-filter="Muscles" aria-pressed="true">
+                Muscles
+              </button>
+            </li>
+            <li class="filter-item">
+              <button class="filter-btn" type="button" data-filter="Body parts" aria-pressed="false">
+                Body parts
+              </button>
+            </li>
+            <li class="filter-item">
+              <button class="filter-btn" type="button" data-filter="Equipment" aria-pressed="false">
+                Equipment
+              </button>
+            </li>
+          </ul>
+        </nav>
+
+      </div>
     </div>
-  </div>
 
-  <div class="home-main-layout">
-    
-    <div class="home-sidebar">
-      <div class="quote-section">
-        <div class="quote-inner-layout">
-          <div class="quote-icon-box">
-            <img src="./img/icon-runner.svg" alt="Runner icon" class="quote-img-icon" />
-          </div>
-          <div class="quote-right-content">
-            <div class="quote-header">
-              <h2 class="quote-title">Quote of the day</h2>
-              <img src="./img/inverted commas.svg" alt="Quotes" class="quote-comm-icon" />
-            </div>
-            <p class="quote-text js-quote-text">Loading...</p>
-            <p class="quote-author js-quote-author"></p>
-          </div>
+    <div class="exercises-body">
+
+      <aside class="exercises-sidebar">
+        <div class="quote-wrapper"></div>
+      </aside>
+
+      <div class="exercises-content">
+
+        <div class="categories-wrapper" data-section="categories">
+          <ul class="categories-list" id="categories-container" role="list">
+          </ul>
         </div>
-      </div>
-      
-      <div class="home-hero-image">
-        <img src="./img/Image.png" alt="Sport training" />
-      </div>
 
-      <div class="exercise-info-card">
-        <div class="exercise-info-inner-layout">
-          <div class="info-icon-box">
-            <img src="./img/icon-gantel.svg" alt="Dumbbell icon" class="info-img-icon" />
-          </div>
-          <div class="exercise-info-right-content">
-            <div class="exercise-info-header">
-              <p class="info-title">110 min</p>
-              <p class="info-subtitle">Daily norm of sports</p>
-            </div>
-            <p class="exercise-info-description">
-              The World Health Organization recommends at least 150 minutes of moderate-intensity aerobic physical activity throughout the week for adults aged 18–64. However, what happens if we adjust that number to 110 minutes every day? While it might seem like a high number to hit, dedicating 110 minutes daily to sporting activities may offer unparalleled benefits to physical health, mental well-being, and overall quality of life.
-            </p>
-          </div>
+        <div class="exercises-wrapper visually-hidden" data-section="exercises-list">
+          <ul class="exercises-list" id="exercises-container" role="list">
+          </ul>
         </div>
-      </div>
-    </div>
 
-    <div class="exercises-content">
-      <ul class="categories-list js-categories-list"></ul>
-      <div class="pagination-container js-pagination"></div>
+        <div class="pagination" id="pagination-container">
+        </div>
+
+      </div>
     </div>
 
   </div>
