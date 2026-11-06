@@ -74,40 +74,19 @@ function createExerciseCard(exercise) {
   const id = String(exercise._id ?? exercise.id);
   const card = createElement('article', 'exercise-card');
   const cardTop = createElement('div', 'exercise-card-top');
-  const title = createElement(
-    'h3',
-    'exercise-name',
-    safeText(exercise.name, 'Exercise')
-  );
-  const remove = createElement('button', 'remove-button', '×');
+  const cardActions = createElement('div', 'exercise-card-actions');
+  const badge = createElement('span', 'workout-badge', 'WORKOUT');
+  const remove = createElement('button', 'remove-button');
+  const trash = document.createElement('img');
+  trash.src = './images/favorites-trash.svg';
+  trash.alt = '';
+  remove.append(trash);
   remove.type = 'button';
   remove.dataset.action = 'remove';
   remove.dataset.id = id;
   remove.setAttribute(
     'aria-label',
     `Remove ${safeText(exercise.name, 'exercise')} from favorites`
-  );
-  cardTop.append(title, remove);
-
-  const stats = createElement('div', 'exercise-stats');
-  const calories = createElement(
-    'p',
-    '',
-    `Burned calories: ${safeText(exercise.burnedCalories)}`
-  );
-  const bodyPart = createElement(
-    'p',
-    '',
-    `Body part: ${safeText(exercise.bodyPart)}`
-  );
-  const target = createElement('p', '', `Target: ${safeText(exercise.target)}`);
-  stats.append(calories, bodyPart, target);
-
-  const cardBottom = createElement('div', 'exercise-card-bottom');
-  const rating = createElement(
-    'span',
-    'rating',
-    `★ ${safeText(exercise.rating, 'N/A')}`
   );
   const start = createElement('button', 'start-button', 'Start →');
   start.type = 'button';
@@ -117,8 +96,34 @@ function createExerciseCard(exercise) {
     'aria-label',
     `Open details for ${safeText(exercise.name, 'exercise')}`
   );
-  cardBottom.append(rating, start);
-  card.append(cardTop, stats, cardBottom);
+  cardActions.append(badge, remove);
+  cardTop.append(cardActions, start);
+
+  const titleRow = createElement('div', 'exercise-title-row');
+  const sport = createElement('span', 'exercise-sport-icon');
+  const sportImg = document.createElement('img');
+  sportImg.src = './images/favorites-runner.svg';
+  sportImg.alt = '';
+  sport.append(sportImg);
+  sport.setAttribute('aria-hidden', 'true');
+  const title = createElement(
+    'h3',
+    'exercise-name',
+    safeText(exercise.name, 'Exercise')
+  );
+  titleRow.append(sport, title);
+
+  const stats = createElement('div', 'exercise-stats');
+  const calories = createElement('p', '', 'Burned calories: ');
+  calories.append(
+    createElement('strong', '', `${safeText(exercise.burnedCalories)} / 3 min`)
+  );
+  const bodyPart = createElement('p', '', 'Body part: ');
+  bodyPart.append(createElement('strong', '', safeText(exercise.bodyPart)));
+  const target = createElement('p', '', 'Target: ');
+  target.append(createElement('strong', '', safeText(exercise.target)));
+  stats.append(calories, bodyPart, target);
+  card.append(cardTop, titleRow, stats);
   return card;
 }
 

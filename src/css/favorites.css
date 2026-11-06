@@ -1,315 +1,306 @@
-/* Favorites styles only: shared base, header and footer live in styles.css. */
-
+body:has(#favorites-view:not([hidden])) {
+  background: #f4f4f4;
+}
+/* Favorites only. Shared reset, typography, header, footer, and container stay global. */
 #favorites-view {
-  padding-top: 68px;
-  padding-bottom: 92px;
-  min-height: calc(100vh - 180px);
+  width: 100%;
+  max-width: 1440px;
+  padding-top: 90px;
+  padding-bottom: 90px;
+  min-height: 700px;
 }
-
-#favorites-view .eyebrow {
-  color: #777;
-  margin: 0 0 12px;
+#favorites-view .favorites-title {
+  margin: 0 0 32px;
+  font-size: 44px;
+  font-weight: 400;
+  line-height: 1.15;
+  letter-spacing: -0.04em;
 }
-
-#favorites-view .favorites-heading h1 {
-  font-size: clamp(48px, 7vw, 72px);
-  line-height: 1.05;
-  letter-spacing: -0.06em;
-  margin: 0 0 44px;
-}
-
 #favorites-view .favorites-layout {
   display: grid;
-  grid-template-columns: minmax(245px, 310px) minmax(0, 1fr);
-  gap: 36px;
+  grid-template-columns: minmax(0, 494px) minmax(0, 1fr);
+  gap: 32px;
 }
-
 #favorites-view .favorites-aside {
   display: grid;
   align-content: start;
-  gap: 20px;
+  gap: 16px;
+  min-width: 0;
 }
-
-#favorites-view .quote-panel,
+#favorites-view .quote-panel {
+  min-height: 230px;
+  padding: 38px 40px;
+  border-radius: 20px;
+  background: #242424;
+  color: #f4f4f4;
+}
+#favorites-view .quote-panel-title {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  margin-bottom: 10px;
+}
+#favorites-view .quote-panel-title h2 {
+  margin: 0;
+  font-size: 23px;
+  font-weight: 400;
+  line-height: 1.25;
+}
+#favorites-view .quote-sport-icon,
+#favorites-view .exercise-sport-icon {
+  display: inline-flex;
+  flex: 0 0 auto;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: #505050;
+  color: white;
+  font-size: 16px;
+}
+#favorites-view .quote-sport-icon img,
+#favorites-view .exercise-sport-icon img {
+  width: 70%;
+  height: 70%;
+  object-fit: contain;
+}
+#favorites-view .quote-mark {
+  margin-left: auto;
+  font-size: 40px;
+  line-height: 1;
+  font-weight: 700;
+}
+#favorites-view .quote-text {
+  margin: 0 0 16px 48px;
+  color: #aaa;
+  font-size: 14px;
+  line-height: 1.35;
+}
+#favorites-view .quote-author {
+  margin: 0 0 0 48px;
+  font-size: 15px;
+}
+#favorites-view .daily-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
 #favorites-view .daily-panel {
-  border-radius: 18px;
-  padding: 28px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-width: 0;
+  min-height: 140px;
+  padding: 24px;
+  border-radius: 20px;
   background: #fff;
 }
-
-#favorites-view .quote-panel {
-  background: #242424;
-  color: #fafafa;
-  min-height: 230px;
+#favorites-view .daily-icon {
+  display: block;
+  width: 20px;
+  height: 20px;
+  margin-bottom: 16px;
 }
-
-#favorites-view .panel-heading {
-  font-size: 18px;
-  margin: 0 0 24px;
+#favorites-view .daily-icon img {
+  width: 100%;
+  height: 100%;
 }
-
-#favorites-view .quote-text {
-  font-size: 20px;
-  font-weight: 600;
-  line-height: 1.4;
-  margin: 0 0 16px;
-}
-
-#favorites-view .quote-author {
-  font-size: 14px;
-  color: #bfbfbf;
-  margin: 0;
-}
-
-#favorites-view .daily-panel {
-  background: #e7e7e7;
-}
-
 #favorites-view .daily-number {
-  font-size: 62px;
-  font-weight: 800;
-  letter-spacing: -0.07em;
+  margin: 0 0 4px;
+  font-size: 24px;
+  line-height: 1.1;
+  font-weight: 500;
 }
-
 #favorites-view .daily-number span {
-  font-size: 18px;
-  letter-spacing: 0;
-  margin-left: 6px;
-}
-
-#favorites-view .daily-panel p {
-  line-height: 1.6;
-  color: #565656;
-  margin: 0;
-}
-
-#favorites-view .section-title-row {
-  display: flex;
-  justify-content: space-between;
-  align-items: baseline;
-  gap: 16px;
-  margin: 0 0 23px;
-}
-
-#favorites-view .section-title-row h2 {
-  font-size: 27px;
-  letter-spacing: -0.03em;
-  margin: 0;
-}
-
-#favorites-view .favorites-count {
   font-size: 14px;
-  color: #666;
+  font-weight: 400;
 }
-
-#favorites-view .favorites-message {
-  padding: 12px 16px;
-  border-radius: 10px;
-  background: #fff0e9;
-  margin-bottom: 20px;
+#favorites-view .daily-label {
+  margin: 0;
+  font-size: 14px;
+  color: #777;
 }
-
+#favorites-view .daily-picture {
+  display: block;
+  width: 100%;
+  min-width: 0;
+  overflow: hidden;
+  border-radius: 20px;
+}
+#favorites-view .daily-picture img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  min-height: 140px;
+  object-fit: cover;
+}
+#favorites-view .favorites-content {
+  min-width: 0;
+}
+#favorites-view .favorites-sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  clip-path: inset(50%);
+}
 #favorites-view .exercise-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 18px;
+  gap: 32px 16px;
 }
-
 #favorites-view .exercise-card {
   display: flex;
   flex-direction: column;
-  min-height: 192px;
-  background: #fff;
-  border: 1px solid #e5e5e5;
+  gap: 20px;
+  min-width: 0;
+  min-height: 140px;
+  padding: 16px;
   border-radius: 16px;
-  padding: 22px;
-  transition: box-shadow 0.15s;
+  background: #fff;
 }
-
-#favorites-view .exercise-card:hover {
-  box-shadow: 0 8px 25px #0000000c;
-}
-
 #favorites-view .exercise-card-top,
-#favorites-view .exercise-card-bottom {
+#favorites-view .exercise-card-actions {
   display: flex;
   align-items: center;
+  gap: 8px;
+}
+#favorites-view .exercise-card-top {
   justify-content: space-between;
-  gap: 12px;
 }
-
-#favorites-view .exercise-name {
-  font-size: 19px;
-  line-height: 1.25;
-  font-weight: 700;
-  margin: 0;
-  overflow-wrap: anywhere;
+#favorites-view .workout-badge {
+  padding: 4px 8px;
+  border: 1px solid currentColor;
+  border-radius: 99px;
+  font-size: 11px;
+  line-height: 1.1;
 }
-
+#favorites-view .remove-button,
+#favorites-view .start-button {
+  border: 0;
+  background: none;
+  color: #242424;
+  cursor: pointer;
+}
 #favorites-view .remove-button {
-  width: 34px;
-  height: 34px;
-  border: 1px solid #ddd;
-  background: #fff;
-  border-radius: 50%;
-  font-size: 25px;
-  line-height: 1;
-  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  padding: 3px;
 }
-
-#favorites-view .remove-button:hover {
-  background: #fee7e2;
-  color: #c83526;
+#favorites-view .remove-button img {
+  width: 100%;
+  height: 100%;
 }
-
+#favorites-view .start-button {
+  padding: 3px 0;
+  font-size: 15px;
+  white-space: nowrap;
+}
+#favorites-view .remove-button:hover,
+#favorites-view .start-button:hover {
+  color: #777;
+}
+#favorites-view .exercise-title-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 0;
+}
+#favorites-view .exercise-sport-icon {
+  width: 24px;
+  height: 24px;
+  background: #242424;
+  font-size: 12px;
+}
+#favorites-view .exercise-name {
+  margin: 0;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 22px;
+  font-weight: 400;
+  line-height: 1.25;
+}
 #favorites-view .exercise-stats {
-  font-size: 13px;
-  color: #666;
-  line-height: 1.5;
-  margin: 14px 0 16px;
-}
-
-#favorites-view .exercise-stats p {
-  margin: 3px 0;
-}
-
-#favorites-view .exercise-card-bottom {
+  display: flex;
+  gap: 14px;
+  align-items: baseline;
+  min-width: 0;
   margin-top: auto;
 }
-
-#favorites-view .rating {
-  font-size: 14px;
-  font-weight: 700;
+#favorites-view .exercise-stats p {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  margin: 0;
+  color: #aaa;
+  font-size: 11px;
 }
-
-#favorites-view .start-button {
-  background: none;
-  border: 0;
-  padding: 8px 0 8px 14px;
-  font-weight: 700;
+#favorites-view .exercise-stats strong {
+  color: #242424;
+  font-weight: 400;
 }
-
-#favorites-view .start-button:hover {
-  color: #fd6e45;
-}
-
-#favorites-view .empty-state {
+#favorites-view .favorites-message {
+  margin: 0 0 18px;
+  padding: 10px;
+  border-radius: 8px;
   background: #fff;
-  border-radius: 18px;
-  padding: 55px 28px;
+}
+#favorites-view .empty-state {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 355px;
+  padding: 0 12%;
   text-align: center;
 }
-
-#favorites-view .empty-icon {
-  font-size: 56px;
-  color: #fa6942;
-}
-
-#favorites-view .empty-state h3 {
-  font-size: 22px;
-  margin: 12px 0;
-}
-
 #favorites-view .empty-state p {
-  color: #666;
-  line-height: 1.5;
-  max-width: 370px;
-  margin: 0 auto 26px;
+  max-width: 550px;
+  margin: 0;
+  font-size: 18px;
+  line-height: 1.35;
 }
-
-#favorites-view .primary-link {
-  display: inline-block;
-  background: #242424;
-  color: white;
-  padding: 14px 23px;
-  border-radius: 25px;
+#favorites-view [hidden] {
+  display: none !important;
 }
-
-#favorites-view .primary-link:hover {
-  background: #fa6942;
-}
-
-@media (max-width: 900px) {
-  #favorites-view .favorites-layout {
-    grid-template-columns: 1fr;
-  }
-
-  #favorites-view .favorites-aside {
-    grid-template-columns: 1fr 1fr;
-  }
-
-  #favorites-view .quote-panel,
-  #favorites-view .daily-panel {
-    min-height: 220px;
-  }
-}
-
-@media (max-width: 600px) {
-  #favorites-view {
-    padding-top: 38px;
-  }
-
-  #favorites-view .favorites-heading h1 {
-    margin-bottom: 30px;
-  }
-
-  #favorites-view .favorites-aside,
-  #favorites-view .exercise-grid {
-    grid-template-columns: 1fr;
-  }
-
-  #favorites-view .quote-panel,
-  #favorites-view .daily-panel {
-    min-height: unset;
-  }
-
-  #favorites-view .section-title-row h2 {
-    font-size: 23px;
-  }
-}
-
-#favorites-view {
-  max-width: 1440px;
-  width: 100%;
-}
-
-/* Standalone exercise-details fallback (until shared modal is merged). */
-
+/* The current fallback dialog remains until the shared modal becomes available. */
 #exercise-dialog {
-  border: 0;
-  border-radius: 20px;
-  padding: 32px;
   width: min(92vw, 520px);
   max-height: 85vh;
   overflow: auto;
+  border: 0;
+  border-radius: 20px;
+  padding: 32px;
   box-shadow: 0 20px 60px #0003;
 }
-
 #exercise-dialog::backdrop {
   background: #0008;
 }
-
 #exercise-dialog .dialog-close {
   float: right;
   border: 0;
   background: none;
   font-size: 28px;
+  cursor: pointer;
 }
-
 #exercise-dialog h2 {
   font-size: 26px;
   padding-right: 35px;
 }
-
 #exercise-dialog .dialog-fields {
   font-size: 14px;
   line-height: 1.5;
 }
-
 #exercise-dialog .dialog-description {
   line-height: 1.6;
 }
-
 #exercise-dialog .dialog-image {
   display: block;
   max-width: 100%;
@@ -318,7 +309,82 @@
   border-radius: 10px;
   margin: 20px auto;
 }
-
-#favorites-view .heading-dot {
-  color: #fd6e45;
+@media (max-width: 1199px) {
+  #favorites-view {
+    padding-top: 72px;
+  }
+  #favorites-view .favorites-layout {
+    grid-template-columns: 1fr;
+    gap: 64px;
+  }
+  #favorites-view .quote-panel {
+    min-height: 220px;
+  }
+  #favorites-view .daily-row {
+    grid-template-columns: 1fr 1fr;
+  }
+  #favorites-view .exercise-grid {
+    gap: 32px 16px;
+  }
+  #favorites-view .empty-state {
+    min-height: 210px;
+  }
+}
+@media (max-width: 767px) {
+  #favorites-view {
+    padding-top: 70px;
+    padding-bottom: 60px;
+    min-height: 0;
+  }
+  #favorites-view .favorites-title {
+    font-size: 28px;
+    margin-bottom: 24px;
+  }
+  #favorites-view .favorites-layout {
+    gap: 40px;
+  }
+  #favorites-view .quote-panel {
+    min-height: 200px;
+    padding: 20px;
+    border-radius: 18px;
+  }
+  #favorites-view .quote-panel-title {
+    gap: 14px;
+  }
+  #favorites-view .quote-panel-title h2 {
+    font-size: 19px;
+  }
+  #favorites-view .quote-text {
+    margin-left: 48px;
+    font-size: 14px;
+  }
+  #favorites-view .quote-author {
+    margin-left: 48px;
+    font-size: 13px;
+  }
+  #favorites-view .daily-row {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  #favorites-view .daily-panel {
+    min-height: 116px;
+  }
+  #favorites-view .daily-picture img {
+    height: 116px;
+    min-height: 0;
+  }
+  #favorites-view .exercise-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  #favorites-view .exercise-card {
+    min-height: 136px;
+  }
+  #favorites-view .empty-state {
+    min-height: 0;
+    padding: 0 12px;
+  }
+  #favorites-view .empty-state p {
+    font-size: 14px;
+  }
 }
