@@ -5,6 +5,9 @@
 }
 
 .hero-container {
+  width: 100%;
+  max-width: 1440px;
+  padding: 0 20px;
   display: grid;
   grid-template-areas:
     'text'
@@ -87,6 +90,7 @@
   }
 
   .hero-container {
+    padding: 0 32px;
     row-gap: 16px;
   }
 
