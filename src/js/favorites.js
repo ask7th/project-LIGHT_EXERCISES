@@ -5,7 +5,8 @@
  * event: favorites:change, event.detail.favorites
  * Start event: exercise:open, event.detail.id
  */
-const STORAGE_KEY = 'energy-favorites';
+import { LS_KEYS } from './constants.js';
+const STORAGE_KEY = LS_KEYS.LEGACY_FAVORITES;
 const API_BASE = 'https://your-energy.b.goit.study/api';
 
 const list = document.querySelector('#favorites-list');
@@ -64,7 +65,7 @@ function createElement(tag, className, text) {
   return el;
 }
 
-function safeText(value, fallback = '—') {
+function safeText(value, fallback = 'â€”') {
   return value === undefined || value === null || value === ''
     ? fallback
     : String(value);
@@ -88,7 +89,7 @@ function createExerciseCard(exercise) {
     'aria-label',
     `Remove ${safeText(exercise.name, 'exercise')} from favorites`
   );
-  const start = createElement('button', 'start-button', 'Start →');
+  const start = createElement('button', 'start-button', 'Start â†’');
   start.type = 'button';
   start.dataset.action = 'open';
   start.dataset.id = id;
@@ -156,7 +157,7 @@ async function openExercise(id) {
 
   if (!dialog || typeof dialog.showModal !== 'function') return;
   dialogContent.replaceChildren(
-    createElement('p', '', 'Loading exercise details…')
+    createElement('p', '', 'Loading exercise detailsâ€¦')
   );
   dialog.showModal();
   try {

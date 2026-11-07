@@ -5,13 +5,99 @@
   font-weight: 400;
 
   color: #242424;
-  background-color: rgba(255, 255, 255, 0.87);
+  background-color: #F4F4F4;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
+
+   /* Кольори карток */
+  --color-bg-white: #ffffff;
+  --color-bg-black: #242424;
+
+    /* Кольори тексту для світлого фону */
+  --color-text-dark: #242424;
+  --color-text-dark-60: rgba(36, 36, 36, 0.6); 
+  --color-text-dark-40: rgba(36, 36, 36, 0.4); 
+
+  /* Кольори тексту для темного фону */
+  --color-text-light: #f4f4f4; 
+  --color-text-light-60: rgba(244, 244, 244, 0.6); 
+  --color-text-light-40: rgba(244, 244, 244, 0.4); 
+
+  --color-border-dark-alpha: rgba(36, 36, 36, 0.1); /* Темна прозора рамка на іконках (10% для світлого фону) */
+  --color-border-solid: #242424;
+  --color-border-light-alpha: rgba(244, 244, 244, 0.1); /* Світла прозора рамка на іконках (10% для темнохо фону/футера) */
+
+  /* Колір для другорядних посилань у футері (Privacy Policy тощо) */
+  --color-text-footer-muted: #c6cdd1;
+
+  /* Жовтий для зірок рейтингу */
+  --color-rating: #eea10c;       
+  
+  /* Колір неактивних елементів пагінації */
+  --color-pagination-inactive: #d4d4d4;
+  --color-rating-inactive: rgba(244, 244, 244, 0.2);
+
+  /* Кольори, які використовуються у футері */
+  --color-black: #242424;
+  --color-white: #f4f4f4;
+  --color-light-grey: #b3b3b3;
+
+  /* Шрифти */
+  --main-font: "DM Sans", sans-serif;
+  --second-font: "Ancizar Sans", sans-serif; 
+
+  /* Розміри шрифтів */
+  --fs-xxs: 12px; 
+  --fs-xs: 14px;  
+  --fs-sm: 16px;
+  --fs-md: 18px;
+  --fs-lg: 20px;
+  --fs-xl: 24px;
+  --fs-2xl: 28px;
+  --fs-3xl: 38px;
+  --fs-4xl: 44px;
+  --fs-5xl: 56px;
+  --fs-6xl: 74px;
+
+/* Вага шрифту */
+  --fw-regular: 400;
+  --fw-medium: 500; 
+  --fw-bold: 700;
+
+  /* Відступи */
+  --space-xs: 4px; 
+  --space-sm: 16px; 
+  --space-md: 18px;
+  --space-lg: 20px; 
+  --space-xl: 24px; 
+  --space-2xl: 32px; 
+  --space-3xl: 64px; 
+  --space-4xl: 110px; 
+  --space-5xl: 132px; 
+
+  /* Радіуси */
+  --radius-xs: 10px;
+  --radius-sm: 12px;
+  --radius-md: 15px;
+  --radius-lg: 20px;
+  --radius-xl: 30px;
+  --radius-2xl: 60px;
+  --radius-full: 9999px;
+
+  /* Транзишини */
+  --transition: 250ms cubic-bezier(0.4, 0, 0.2, 1);
+
+  /* Контейнер */
+  --container-max-width: 1376px;
+
+  --container-padding-mobile: 20px;
+  --container-padding-tablet: 32px;
+  --container-padding-desktop: 32px;
+
 }
 
 body {
@@ -27,4 +113,46 @@ main {
 }
 main:has(.back-link) {
   text-align: center;
+}
+
+.container {
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: var(--container-padding-mobile);
+  padding-right: var(--container-padding-mobile);
+}
+
+@media screen and (min-width: 768px) {
+  .container {
+    max-width: 768px;
+    padding-left: var(--container-padding-tablet);
+    padding-right: var(--container-padding-tablet);
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .container {
+    max-width: calc(var(--container-max-width) + (var(--container-padding-desktop) * 2));
+    padding-left: var(--container-padding-desktop);
+    padding-right: var(--container-padding-desktop);
+  }
+}
+
+.visually-hidden {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  margin: -1px !important;
+  padding: 0 !important;
+  overflow: hidden !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+  clip: rect(0 0 0 0) !important;
+  clip-path: inset(50%) !important;
+}
+
+.exercises-wrapper.visually-hidden,
+.categories-wrapper.visually-hidden {
+  display: none;
 }
