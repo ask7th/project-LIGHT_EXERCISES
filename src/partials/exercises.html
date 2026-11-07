@@ -1,0 +1,85 @@
+<section class="exercises-section" id="exercises" data-section="catalog">
+  <div class="container">
+
+    <div class="exercises-header-wrapper">
+
+      <h2 class="exercises-main-title">
+        Exercises
+        <span id="category-slash" class="visually-hidden"> /</span>
+        <span id="selected-category-name" class="exercises-category-subtitle"></span>
+      </h2>
+
+      <div class="exercises-controls">
+
+        <form class="search-form visually-hidden" id="search-form" role="search" aria-label="Search exercises">
+          <div class="search-input-wrapper">
+            <input
+              type="text"
+              name="query"
+              id="search-input"
+              placeholder="Search"
+              class="search-input"
+              autocomplete="off"
+            />
+            <button type="button" class="search-clear-btn" id="search-clear-btn" aria-label="Clear search" hidden>
+              <svg width="12" height="12" aria-hidden="true">
+                <use href="/images/sprite.svg#icon-close"></use>
+              </svg>
+            </button>
+            <button type="submit" class="search-submit-btn" aria-label="Search">
+              <svg width="18" height="18" aria-hidden="true">
+                <use href="/images/sprite.svg#icon-search"></use>
+              </svg>
+            </button>
+          </div>
+        </form>
+
+        <nav class="exercises-filters" aria-label="Exercise filters">
+          <ul class="filter-list" id="filter-list" role="list">
+            <li class="filter-item">
+              <button class="filter-btn active" type="button" data-filter="Muscles" aria-pressed="true">
+                Muscles
+              </button>
+            </li>
+            <li class="filter-item">
+              <button class="filter-btn" type="button" data-filter="Body parts" aria-pressed="false">
+                Body parts
+              </button>
+            </li>
+            <li class="filter-item">
+              <button class="filter-btn" type="button" data-filter="Equipment" aria-pressed="false">
+                Equipment
+              </button>
+            </li>
+          </ul>
+        </nav>
+
+      </div>
+    </div>
+
+    <div class="exercises-body">
+
+      <aside class="exercises-sidebar">
+        <div class="quote-wrapper"></div>
+      </aside>
+
+      <div class="exercises-content">
+
+        <div class="categories-wrapper" data-section="categories">
+          <ul class="categories-list" id="categories-container" role="list">
+          </ul>
+        </div>
+
+        <div class="exercises-wrapper visually-hidden" data-section="exercises-list">
+          <ul class="exercises-list" id="exercises-container" role="list">
+          </ul>
+        </div>
+
+        <div class="pagination" id="pagination-container">
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</section>
