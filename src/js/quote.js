@@ -1,10 +1,10 @@
 import { spriteHref } from './sprite.js';
-import quoteDesktopUrl from '../images/hero/women-sportswear-taking-break-from-workout_1.png';
-import quoteDesktop2xUrl from '../images/hero/women-sportswear-taking-break-from-workout@2x.png';
-import quoteTabletUrl from '../images/hero/women-sportswear-taking-break-from-workout-1_tab.png';
-import quoteTablet2xUrl from '../images/hero/women-sportswear-taking-break-from-workout-1_tab@2x.png';
-import quoteMobileUrl from '../images/hero/women-sportswear-taking-break-from-workout-1_mob.png';
-import quoteMobile2xUrl from '../images/hero/women-sportswear-taking-break-from-workout_1_mob@2x.png';
+import quoteDesktopUrl from '../images/women-sportswear-taking-break-from-workout_1.png';
+import quoteDesktop2xUrl from '../images/women-sportswear-taking-break-from-workout@2x.png';
+import quoteTabletUrl from '../images/women-sportswear-taking-break-from-workout-1_tab.png';
+import quoteTablet2xUrl from '../images/women-sportswear-taking-break-from-workout-1_tab@2x.png';
+import quoteMobileUrl from '../images/women-sportswear-taking-break-from-workout-1_mob.png';
+import quoteMobile2xUrl from '../images/women-sportswear-taking-break-from-workout_1_mob@2x.png';
 import { getQuote } from './api.js';
 import { LS_KEYS } from './constants.js';
 
