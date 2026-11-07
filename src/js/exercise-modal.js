@@ -147,7 +147,7 @@ export function initExerciseModal() {
       : 'Add to favorites';
     favoriteIcon.setAttribute(
       'href',
-      `./sprite.svg#icon-${isFavorite ? 'trash' : 'heart'}`
+      `${window.__SPRITE_URL__}#icon-${isFavorite ? 'trash' : 'heart'}`
     );
     favoriteButton.classList.toggle('is-favorite', isFavorite);
     favoriteButton.setAttribute('aria-pressed', String(isFavorite));

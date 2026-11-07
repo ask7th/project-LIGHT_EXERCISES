@@ -38,7 +38,7 @@ function populateSidebarWrapper() {
     <div class="quote-card">
       <div class="quote-card-top">
         <div class="quote-card-icon-wrap">
-          <svg width="18" height="18" aria-hidden="true"><use href="${spriteHref('icon-run')}"></use></svg>
+          <svg width="32" height="32" aria-hidden="true"><use href="${spriteHref('icon-quote-run')}"></use></svg>
         </div>
         <p class="quote-card-title">Quote of the day</p>
         <svg class="quote-mark" width="24" height="24" aria-hidden="true"><use href="${spriteHref('icon-quote')}"></use></svg>

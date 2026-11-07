@@ -22,15 +22,13 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 34px;
+  width: 32px;
   height: 32px;
   border-radius: 50%;
-  background: rgba(244, 244, 244, 0.2);
   flex-shrink: 0;
 }
 
 .quote-card-icon-wrap svg {
-  fill: #ffffff;
   width: 32px;
   height: 32px;
 }

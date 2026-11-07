@@ -64,9 +64,22 @@
 
 .footer-social-icon {
   display: block;
-  width: 24px;
-  height: 24px;
   fill: currentColor;
+}
+
+.footer-social-item:nth-child(1) .footer-social-icon {
+  width: 8px;
+  height: 20px;
+}
+
+.footer-social-item:nth-child(2) .footer-social-icon {
+  width: 23px;
+  height: 23px;
+}
+
+.footer-social-item:nth-child(3) .footer-social-icon {
+  width: 25px;
+  height: 18px;
 }
 
 .footer-info,
@@ -250,8 +263,8 @@
   }
 
   .footer-social-icon {
-    width: 28px;
-    height: 28px;
+    width: auto;
+    height: auto;
   }
 
   .footer-info {
