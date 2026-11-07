@@ -194,7 +194,7 @@
   }
 }
 
-@media screen and (min-width: 1280px) {
+@media screen and (min-width: 1440px) {
   .exercises-header-wrapper {
     display: flex;
     align-items: center;

@@ -60,7 +60,7 @@ function renderCategoryCards(categories) {
         .map(({ filter, name, imgURL }) => `
             <li class="category-item">
                 <button class="category-card-btn" data-filter="${filter}" data-name="${name}">
-                    <img src="${imgURL}" alt="${name}" class="category-img" loading="lazy" />
+                    <img src="${imgURL}" alt="${name}" class="category-img" loading="lazy" decoding="async" />
                     <div class="category-content">
                         <h3 class="category-name">${name}</h3>
                         <p class="category-label">${filter}</p>

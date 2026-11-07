@@ -6,7 +6,6 @@
 
 .hero-container {
   width: 100%;
-  max-width: 1440px;
   padding: 0 20px;
   display: grid;
   grid-template-areas:
@@ -134,7 +133,7 @@
 }
 
 /* ===== Desktop ===== */
-@media only screen and (min-width: 1200px) {
+@media only screen and (min-width: 1440px) {
   .hero {
     padding-top: 96px;
   }
