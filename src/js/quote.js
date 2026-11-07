@@ -1,5 +1,5 @@
 import { spriteHref } from './sprite.js';
-import quotePhotoUrl from '../images/hero/women-sportswear-taking-break-from-workout-1_mob.png';
+import quotePhotoUrl from '../images/women-sportswear-taking-break-from-workout-1_mob.png';
 import { getQuote } from './api.js';
 import { LS_KEYS } from './constants.js';
 
