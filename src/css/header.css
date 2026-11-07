@@ -349,9 +349,6 @@
     gap: 12px;
   }
 
-  .header-container {
-    padding: 0;
-  }
 
   .header-navigation-link:hover,
   .header-navigation-link:focus-visible,
