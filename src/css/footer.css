@@ -305,6 +305,7 @@
   }
 
   .footer-container {
+    grid-template-columns: 280px minmax(0, 1fr);
     row-gap: 42px;
   }
 

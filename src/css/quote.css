@@ -1,7 +1,3 @@
-.quote-wrapper {
-  margin-top: 32px;
-}
-
 .quote-card {
   background: #242424;
   border-radius: 20px;
@@ -143,7 +139,6 @@ blockquote.quote-text {
 @media screen and (min-width: 768px) {
   .quote-wrapper {
     width: 704px;
-    margin-top: 40px;
     display: grid;
     grid-template-columns: 400px 288px;
     grid-template-rows: auto auto;
@@ -191,6 +186,10 @@ blockquote.quote-text {
 
   .daily-norm-text {
     padding-left: 47px;
+    display: -webkit-box;
+    overflow: hidden;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 5;
   }
 
 @media screen and (min-width: 1440px) {
@@ -236,8 +235,12 @@ blockquote.quote-text {
 
   .daily-norm-text {
     width: 350px;
-    height: 163px;
+    height: auto;
     padding-left: 47px;
+    display: block;
+    overflow: visible;
+    -webkit-box-orient: initial;
+    -webkit-line-clamp: unset;
   }
 }
 }

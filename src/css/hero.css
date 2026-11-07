@@ -1,12 +1,10 @@
 /* ===== Hero: mobile first ===== */
 .hero {
-  padding-top: 80px;
   padding-bottom: 40px;
 }
 
 .hero-container {
   width: 100%;
-  padding: 0 20px;
   display: grid;
   grid-template-areas:
     'text'
@@ -57,7 +55,7 @@
 .hero-tags {
   grid-area: tags;
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   gap: 8px;
 }
 
@@ -84,12 +82,10 @@
 /* ===== Tablet ===== */
 @media only screen and (min-width: 768px) {
   .hero {
-    padding-top: 100px;
     padding-bottom: 64px;
   }
 
   .hero-container {
-    padding: 0 32px;
     row-gap: 16px;
   }
 
@@ -134,9 +130,6 @@
 
 /* ===== Desktop ===== */
 @media only screen and (min-width: 1440px) {
-  .hero {
-    padding-top: 96px;
-  }
 
   .hero-container {
     grid-template-columns: 1fr auto;

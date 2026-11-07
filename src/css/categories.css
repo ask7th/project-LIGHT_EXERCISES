@@ -77,6 +77,7 @@
   align-items: center;
   gap: 8px;
   margin-top: 32px;
+  padding-bottom: 80px;
 }
 
 .pagination-btn {
@@ -153,6 +154,9 @@
 }
 
 @media screen and (min-width: 768px) {
+  .pagination {
+    padding-bottom: 64px;
+  }
   .categories-list {
     grid-template-columns: repeat(3, 1fr);
     gap: 16px;
@@ -168,6 +172,9 @@
 }
 
 @media screen and (min-width: 1440px) {
+  .pagination {
+    padding-bottom: 0;
+  }
   .categories-list {
     grid-template-columns: repeat(3, 1fr);
     gap: 15px;
