@@ -92,8 +92,6 @@
   --transition: 250ms cubic-bezier(0.4, 0, 0.2, 1);
 
   /* Контейнер */
-  --container-max-width: 1376px;
-
   --container-padding-mobile: 20px;
   --container-padding-tablet: 32px;
   --container-padding-desktop: 32px;
@@ -113,30 +111,6 @@ main {
 }
 main:has(.back-link) {
   text-align: center;
-}
-
-.container {
-  width: 100%;
-  margin-left: auto;
-  margin-right: auto;
-  padding-left: var(--container-padding-mobile);
-  padding-right: var(--container-padding-mobile);
-}
-
-@media screen and (min-width: 768px) {
-  .container {
-    max-width: 768px;
-    padding-left: var(--container-padding-tablet);
-    padding-right: var(--container-padding-tablet);
-  }
-}
-
-@media screen and (min-width: 1280px) {
-  .container {
-    max-width: calc(var(--container-max-width) + (var(--container-padding-desktop) * 2));
-    padding-left: var(--container-padding-desktop);
-    padding-right: var(--container-padding-desktop);
-  }
 }
 
 .visually-hidden {

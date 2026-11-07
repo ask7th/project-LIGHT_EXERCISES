@@ -89,7 +89,7 @@ function renderExerciseCards(exercises) {
                 </div>
                 <h3 class="ex-title">
                     <span class="ex-icon-wrap">
-                        <svg class="ex-icon" width="14" height="16" aria-hidden="true"><use href="${spriteHref('icon-run')}"></use></svg>
+                        <svg class="ex-icon" width="24" height="24" aria-hidden="true"><use href="${spriteHref('icon-run-circle')}"></use></svg>
                     </span>
                     ${name}
                 </h3>
