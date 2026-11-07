@@ -1,4 +1,4 @@
-import './js/header/header.js';
+import './js/header.js';
 import spriteUrl from './images/sprite.svg';
 window.__SPRITE_URL__ = spriteUrl;
 
