@@ -1,0 +1,94 @@
+<section
+  id="favorites-view"
+  class="favorites-page container"
+  aria-labelledby="favorites-title"
+  hidden
+>
+  <h1 id="favorites-title" class="favorites-title">Favorites</h1>
+
+  <div class="favorites-layout">
+    <aside class="favorites-aside" aria-label="Daily inspiration">
+      <section class="quote-panel" aria-labelledby="quote-heading">
+        <div class="quote-panel-title">
+          <span class="quote-sport-icon" aria-hidden="true"
+            ><img src="./images/favorites-runner.svg" alt=""
+          /></span>
+          <h2 id="quote-heading">Quote of the day</h2>
+          <span class="quote-mark" aria-hidden="true">“</span>
+        </div>
+        <blockquote id="quote-text" class="quote-text">
+          Keep moving. Every step matters.
+        </blockquote>
+        <p id="quote-author" class="quote-author">Your Energy</p>
+      </section>
+      <div class="daily-row">
+        <section class="daily-panel" aria-label="Daily norm of sports">
+          <span class="daily-icon" aria-hidden="true"
+            ><img src="./images/favorites-dumbbell.svg" alt=""
+          /></span>
+          <p class="daily-number">110 <span>min</span></p>
+          <p class="daily-label">Daily norm of sports</p>
+        </section>
+        <picture class="daily-picture">
+          <source
+            media="(max-width: 767px)"
+            srcset="./images/favorites-sport-mobile.webp"
+            type="image/webp"
+          />
+          <source
+            media="(max-width: 1199px)"
+            srcset="./images/favorites-sport-tablet.webp"
+            type="image/webp"
+          />
+          <img
+            src="./images/favorites-sport-desktop.webp"
+            width="344"
+            height="141"
+            alt="Two women smiling during a workout outdoors"
+            loading="lazy"
+          />
+        </picture>
+      </div>
+    </aside>
+
+    <section class="favorites-content" aria-labelledby="exercise-heading">
+      <h2 id="exercise-heading" class="favorites-sr-only">
+        Favorite exercises
+      </h2>
+      <p id="favorites-count" class="favorites-sr-only" aria-live="polite">
+        0 exercises
+      </p>
+      <div
+        id="favorites-message"
+        class="favorites-message"
+        role="status"
+        hidden
+      ></div>
+      <div id="favorites-list" class="exercise-grid" aria-live="polite"></div>
+      <div id="favorites-empty" class="empty-state" hidden>
+        <p>
+          It appears that you haven't added any exercises to your favorites yet.
+          To get started, you can add exercises that you like to your favorites
+          for easier access in the future.
+        </p>
+      </div>
+    </section>
+  </div>
+</section>
+
+<!-- Temporary fallback until the team's shared exercise modal is merged. -->
+<dialog
+  id="exercise-dialog"
+  class="exercise-dialog"
+  aria-labelledby="dialog-title"
+>
+  <button
+    type="button"
+    class="dialog-close"
+    id="dialog-close"
+    aria-label="Close exercise details"
+  >
+    ×
+  </button>
+  <div id="dialog-content"></div>
+</dialog>

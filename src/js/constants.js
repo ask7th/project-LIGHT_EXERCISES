@@ -1,5 +1,6 @@
 export const LS_KEYS = {
   FAVORITES: 'yourenergy:favorites',
+  LEGACY_FAVORITES: 'energy-favorites',
   QUOTE: 'yourenergy:quote',
   QUOTE_DATE: 'yourenergy:quote-date',
 };
