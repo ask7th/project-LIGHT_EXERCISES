@@ -1,5 +1,5 @@
-const BASE = import.meta.env.BASE_URL.replace(/\/$/, '');
- 
+import spriteUrl from '../images/sprite.svg';
+
 export function spriteHref(iconId) {
-  return `${BASE}/images/sprite.svg#${iconId}`;
+  return `${spriteUrl}#${iconId}`;
 }

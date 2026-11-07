@@ -1,5 +1,10 @@
 import { spriteHref } from './sprite.js';
-import quotePhotoUrl from '../images/women-sportswear-taking-break-from-workout-1_mob.png';
+import quoteDesktopUrl from '../images/women-sportswear-taking-break-from-workout_1.png';
+import quoteDesktop2xUrl from '../images/women-sportswear-taking-break-from-workout@2x.png';
+import quoteTabletUrl from '../images/women-sportswear-taking-break-from-workout-1_tab.png';
+import quoteTablet2xUrl from '../images/women-sportswear-taking-break-from-workout-1_tab@2x.png';
+import quoteMobileUrl from '../images/women-sportswear-taking-break-from-workout-1_mob.png';
+import quoteMobile2xUrl from '../images/women-sportswear-taking-break-from-workout_1_mob@2x.png';
 import { getQuote } from './api.js';
 import { LS_KEYS } from './constants.js';
 
@@ -33,7 +38,7 @@ function populateSidebarWrapper() {
     <div class="quote-card">
       <div class="quote-card-top">
         <div class="quote-card-icon-wrap">
-          <svg width="18" height="18" aria-hidden="true"><use href="${spriteHref('icon-run')}"></use></svg>
+          <svg width="32" height="32" aria-hidden="true"><use href="${spriteHref('icon-quote-run')}"></use></svg>
         </div>
         <p class="quote-card-title">Quote of the day</p>
         <svg class="quote-mark" width="24" height="24" aria-hidden="true"><use href="${spriteHref('icon-quote')}"></use></svg>
@@ -42,14 +47,26 @@ function populateSidebarWrapper() {
       <p class="quote-author"></p>
     </div>
     <div class="quote-photo-wrap">
-      <img
-        src="${quotePhotoUrl}"
-        srcset="${quotePhotoUrl} 2x"
-        alt="Women working out"
-        class="quote-photo"
-        width="290"
-        height="242"
-      />
+      <picture>
+        <source
+          media="(min-width: 1280px)"
+          srcset="${quoteDesktopUrl} 1x, ${quoteDesktop2xUrl} 2x"
+        />
+        <source
+          media="(min-width: 768px)"
+          srcset="${quoteTabletUrl} 1x, ${quoteTablet2xUrl} 2x"
+        />
+        <img
+          src="${quoteMobileUrl}"
+          srcset="${quoteMobileUrl} 1x, ${quoteMobile2xUrl} 2x"
+          alt="Women working out"
+          class="quote-photo"
+          width="290"
+          height="242"
+          loading="lazy"
+          decoding="async"
+        />
+      </picture>
     </div>
     <div class="daily-norm-card">
       <div class="daily-norm-header">

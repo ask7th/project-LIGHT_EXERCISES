@@ -13,7 +13,8 @@
 @import url('./header.css');
 @import url('./hero.css');
 @import url('./footer.css');
-@import url('./filters.css');
-@import url('./categories.css');
-@import url('./exercises.css');
-@import url('./quote.css');
+@import url('./exercise-modal.css');
+@import './filters.css';
+@import './categories.css';
+@import './exercises.css';
+@import './quote.css';
