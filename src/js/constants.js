@@ -18,6 +18,12 @@ export const EVENTS = {
   FAVORITES_CHANGED: 'yourenergy:favorites-changed',
 };
 
+export const EXERCISE_MODAL = {
+  API_URL: 'https://your-energy.b.goit.study/api/exercises/',
+  FAVORITES_KEY: 'energy-favorites',
+  FAVORITES_CHANGED_EVENT: 'favorites:changed',
+};
+
 export const PAGINATION = {
   CATEGORIES_DESKTOP: 12,
   CATEGORIES_MOBILE: 9,

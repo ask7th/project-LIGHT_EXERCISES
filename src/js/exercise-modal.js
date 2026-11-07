@@ -1,8 +1,5 @@
 import axios from 'axios';
-
-const API_URL = 'https://your-energy.b.goit.study/api/exercises/';
-const FAVORITES_KEY = 'energy-favorites';
-const EMAIL_PATTERN = /^\w+(\.\w+)?@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/;
+import { EXERCISE_MODAL, EMAIL_PATTERN } from './constants.js';
 
 function getExerciseId(exercise) {
   return exercise._id || exercise.id || '';
@@ -10,7 +7,7 @@ function getExerciseId(exercise) {
 
 function getFavorites() {
   try {
-    const savedFavorites = localStorage.getItem(FAVORITES_KEY);
+    const savedFavorites = localStorage.getItem(EXERCISE_MODAL.FAVORITES_KEY);
 
     if (!savedFavorites) {
       return [];
@@ -41,7 +38,9 @@ async function getExercise(exerciseOrId) {
     throw new Error('Exercise ID is missing.');
   }
 
-  const { data } = await axios.get(`${API_URL}${encodeURIComponent(exerciseOrId)}`);
+  const { data } = await axios.get(
+    `${EXERCISE_MODAL.API_URL}${encodeURIComponent(exerciseOrId)}`
+  );
   return data.exercise || data;
 }
 
@@ -62,6 +61,7 @@ export function initExerciseModal() {
   const ratingFormError = document.querySelector('.rating-form-error');
   const ratingFormValue = document.querySelector('.rating-form-value');
   const ratingStars = document.querySelector('.rating-form-stars');
+  const ratingEmail = document.querySelector('#rating-email');
   const favoriteButton = document.querySelector('.exercise-modal-favorite');
   const ratingButton = document.querySelector('.exercise-modal-rate');
   const favoriteLabel = document.querySelector('.exercise-modal-favorite-label');
@@ -84,6 +84,7 @@ export function initExerciseModal() {
   let currentExercise = null;
   let isRatingViewOpen = false;
   let lastFocusedElement = null;
+  let openRequestId = 0;
 
   function showExerciseView() {
     isRatingViewOpen = false;
@@ -170,6 +171,7 @@ export function initExerciseModal() {
   }
 
   function showExercise(exercise) {
+    modal.classList.remove('is-loading');
     modal.dataset.exerciseId = getExerciseId(exercise);
     setText(currentExerciseTitle, exercise.name, 'Exercise');
     setText(ratingValue, Number(exercise.rating || 0).toFixed(1));
@@ -188,9 +190,21 @@ export function initExerciseModal() {
   }
 
   async function openModal(exerciseOrId) {
+    const requestId = ++openRequestId;
+
     currentExercise = null;
     showExerciseView();
+    modal.classList.add('is-loading');
     errorMessage.hidden = true;
+    setText(currentExerciseTitle, 'Loading exercise…');
+    setText(ratingValue, '—');
+    setText(target, '—');
+    setText(bodyPart, '—');
+    setText(equipment, '—');
+    setText(popularity, '—');
+    setText(burnedCalories, '—');
+    setText(description, 'Loading exercise…');
+    stars.style.setProperty('--rating', '0%');
     image.hidden = true;
     imagePlaceholder.textContent = 'Loading exercise…';
     imagePlaceholder.hidden = false;
@@ -203,9 +217,15 @@ export function initExerciseModal() {
     modal.focus({ preventScroll: true });
 
     try {
-      currentExercise = await getExercise(exerciseOrId);
+      const exercise = await getExercise(exerciseOrId);
+      if (requestId !== openRequestId) return;
+
+      currentExercise = exercise;
       showExercise(currentExercise);
     } catch (error) {
+      if (requestId !== openRequestId) return;
+
+      modal.classList.remove('is-loading');
       errorMessage.textContent = error.message;
       errorMessage.hidden = false;
       imagePlaceholder.textContent = 'Exercise preview unavailable';
@@ -231,15 +251,23 @@ export function initExerciseModal() {
       ? favorites.filter(item => getExerciseId(item) !== exerciseId)
       : [...favorites, currentExercise];
 
-    localStorage.setItem(FAVORITES_KEY, JSON.stringify(updatedFavorites));
+    try {
+      localStorage.setItem(
+        EXERCISE_MODAL.FAVORITES_KEY,
+        JSON.stringify(updatedFavorites)
+      );
+    } catch (error) {
+      console.error('Could not save favorites:', error);
+      errorMessage.textContent = 'Could not save favorite. Please try again.';
+      errorMessage.hidden = false;
+      return;
+    }
+
     showFavoriteButton(currentExercise);
     document.dispatchEvent(
-      new CustomEvent('favorites:change', {
-        detail: { favorites: updatedFavorites },
+      new CustomEvent(EXERCISE_MODAL.FAVORITES_CHANGED_EVENT, {
+        detail: updatedFavorites,
       })
-    );
-    document.dispatchEvent(
-      new CustomEvent('favorites:changed', { detail: updatedFavorites })
     );
   }
 
@@ -278,7 +306,7 @@ export function initExerciseModal() {
 
     try {
       const { data } = await axios.patch(
-        `${API_URL}${encodeURIComponent(exerciseId)}/rating`,
+        `${EXERCISE_MODAL.API_URL}${encodeURIComponent(exerciseId)}/rating`,
         { rate, email, review }
       );
 
