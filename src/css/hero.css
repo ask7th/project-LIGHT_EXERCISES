@@ -1,0 +1,176 @@
+/* ===== Hero: mobile first ===== */
+.hero {
+  padding-top: 80px;
+  padding-bottom: 40px;
+}
+
+.hero-container {
+  width: 100%;
+  max-width: 1440px;
+  padding: 0 20px;
+  display: grid;
+  grid-template-areas:
+    'text'
+    'image'
+    'tags';
+  row-gap: 20px;
+}
+
+.hero-text {
+  grid-area: text;
+}
+
+.hero-title {
+  position: relative;
+  margin-bottom: 20px;
+  font-size: 38px;
+  font-weight: 400;
+  line-height: 1.16;
+  letter-spacing: -0.02em;
+  text-indent: 56px;
+  color: #242424;
+}
+
+.hero-title-accent {
+  font-style: italic;
+}
+
+.hero-sun {
+  position: absolute;
+  top: 5px;
+  left: 0;
+  width: 38px;
+  height: 38px;
+}
+
+.hero-subtitle {
+  font-size: 14px;
+  line-height: 1.29;
+  letter-spacing: -0.02em;
+  color: #242424;
+}
+
+/* Small image is shown only on desktop */
+.hero-small {
+  display: none;
+}
+
+.hero-tags {
+  grid-area: tags;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.hero-tag {
+  padding: 4px 12px;
+  border: 1px solid #242424;
+  border-radius: 30px;
+  font-size: 14px;
+  line-height: 1.29;
+  color: #242424;
+}
+
+.hero-picture {
+  grid-area: image;
+}
+
+.hero-img {
+  width: 100%;
+  height: 460px;
+  object-fit: cover;
+  border-radius: 30px;
+}
+
+/* ===== Tablet ===== */
+@media only screen and (min-width: 768px) {
+  .hero {
+    padding-top: 100px;
+    padding-bottom: 64px;
+  }
+
+  .hero-container {
+    padding: 0 32px;
+    row-gap: 16px;
+  }
+
+  .hero-text {
+    margin-bottom: 16px;
+  }
+
+  .hero-title {
+    max-width: 639px;
+    font-size: 74px;
+    line-height: 1;
+    text-indent: 74px;
+  }
+
+  .hero-sun {
+    top: 6px;
+    width: 59px;
+    height: 59px;
+  }
+
+  .hero-subtitle {
+    max-width: 528px;
+    font-size: 18px;
+    line-height: 1.33;
+  }
+
+  .hero-tags {
+    justify-content: flex-end;
+  }
+
+  .hero-tag {
+    padding: 4px 16px;
+    font-size: 16px;
+    line-height: 1.5;
+  }
+
+  .hero-img {
+    height: 550px;
+    border-radius: 60px;
+  }
+}
+
+/* ===== Desktop ===== */
+@media only screen and (min-width: 1200px) {
+  .hero {
+    padding-top: 96px;
+  }
+
+  .hero-container {
+    grid-template-columns: 1fr auto;
+    grid-template-areas:
+      'text small'
+      'text tags'
+      'image image';
+    row-gap: 0;
+    column-gap: 32px;
+  }
+
+  .hero-text {
+    margin-bottom: 32px;
+  }
+
+  .hero-small {
+    grid-area: small;
+    display: block;
+    justify-self: end;
+    padding-top: 12px;
+  }
+
+  .hero-small-img {
+    border-radius: 20px;
+  }
+
+  .hero-tags {
+    align-self: end;
+    max-width: 205px;
+    margin-bottom: 32px;
+  }
+
+  .hero-img {
+    height: 350px;
+  }
+}
