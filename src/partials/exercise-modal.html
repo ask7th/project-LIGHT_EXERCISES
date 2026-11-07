@@ -1,0 +1,101 @@
+<div class="exercise-modal-backdrop" hidden>
+<div class="exercise-modal" role="dialog" aria-modal="true" aria-labelledby="exercise-modal-title" tabindex="-1">
+  <button class="exercise-modal-close" type="button" aria-label="Close exercise details">
+    <svg viewBox="0 0 24 24" aria-hidden="true">
+      <use href="./sprite.svg#icon-close"></use>
+    </svg>
+  </button>
+
+  <div class="exercise-modal-content">
+    <div class="exercise-modal-media-wrap">
+      <div class="exercise-modal-media-placeholder" aria-hidden="true">Loading exercise…</div>
+      <img class="exercise-modal-media" alt="" hidden>
+    </div>
+
+    <section class="exercise-modal-details">
+      <h2 class="exercise-modal-title" id="exercise-modal-title"></h2>
+      <div class="exercise-modal-rating" aria-label="Exercise rating">
+        <span class="exercise-modal-rating-value"></span>
+        <span class="exercise-modal-stars" aria-hidden="true">
+          <span class="exercise-modal-stars-row">
+            <svg viewBox="0 0 24 24"><use href="./sprite.svg#icon-star"></use></svg>
+            <svg viewBox="0 0 24 24"><use href="./sprite.svg#icon-star"></use></svg>
+            <svg viewBox="0 0 24 24"><use href="./sprite.svg#icon-star"></use></svg>
+            <svg viewBox="0 0 24 24"><use href="./sprite.svg#icon-star"></use></svg>
+            <svg viewBox="0 0 24 24"><use href="./sprite.svg#icon-star"></use></svg>
+          </span>
+          <span class="exercise-modal-stars-filled">
+            <svg viewBox="0 0 24 24"><use href="./sprite.svg#icon-star"></use></svg>
+            <svg viewBox="0 0 24 24"><use href="./sprite.svg#icon-star"></use></svg>
+            <svg viewBox="0 0 24 24"><use href="./sprite.svg#icon-star"></use></svg>
+            <svg viewBox="0 0 24 24"><use href="./sprite.svg#icon-star"></use></svg>
+            <svg viewBox="0 0 24 24"><use href="./sprite.svg#icon-star"></use></svg>
+          </span>
+        </span>
+      </div>
+      <div class="exercise-modal-divider"></div>
+
+      <ul class="exercise-modal-stats">
+        <li class="exercise-modal-stat">
+          <h3>Target</h3>
+          <p data-field="target"></p>
+        </li>
+        <li class="exercise-modal-stat">
+          <h3>Body Part</h3>
+          <p data-field="bodyPart"></p>
+        </li>
+        <li class="exercise-modal-stat">
+          <h3>Equipment</h3>
+          <p data-field="equipment"></p>
+        </li>
+        <li class="exercise-modal-stat">
+          <h3>Popular</h3>
+          <p data-field="popularity"></p>
+        </li>
+        <li class="exercise-modal-stat exercise-modal-stat-calories">
+          <h3>Burned Calories</h3>
+          <p><span data-field="burnedCalories"></span> / 3 min</p>
+        </li>
+      </ul>
+      <div class="exercise-modal-divider exercise-modal-divider-stats"></div>
+
+      <p class="exercise-modal-description"></p>
+      <p class="exercise-modal-error" role="status" hidden></p>
+      <button class="exercise-modal-favorite" type="button" aria-pressed="false">
+        <span class="exercise-modal-favorite-label">Add to favorites</span>
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <use href="./sprite.svg#icon-heart" data-favorite-icon></use>
+        </svg>
+      </button>
+      <button class="exercise-modal-rate" type="button">Give a rating</button>
+    </section>
+  </div>
+
+  <section class="exercise-modal-rating-view" aria-labelledby="rating-modal-title" hidden>
+    <h2 class="rating-modal-title" id="rating-modal-title">Give a rating</h2>
+    <form class="rating-form">
+      <div class="rating-form-score">
+        <span>Rating</span>
+        <output class="rating-form-value">0.0</output>
+      </div>
+      <fieldset class="rating-form-stars" aria-label="Choose a rating">
+        <legend class="visually-hidden">Choose a rating from one to five stars</legend>
+        <label><input type="radio" name="rate" value="1" required><svg viewBox="0 0 24 24" aria-hidden="true"><use href="./sprite.svg#icon-star"></use></svg></label>
+        <label><input type="radio" name="rate" value="2" required><svg viewBox="0 0 24 24" aria-hidden="true"><use href="./sprite.svg#icon-star"></use></svg></label>
+        <label><input type="radio" name="rate" value="3" required><svg viewBox="0 0 24 24" aria-hidden="true"><use href="./sprite.svg#icon-star"></use></svg></label>
+        <label><input type="radio" name="rate" value="4" required><svg viewBox="0 0 24 24" aria-hidden="true"><use href="./sprite.svg#icon-star"></use></svg></label>
+        <label><input type="radio" name="rate" value="5" required><svg viewBox="0 0 24 24" aria-hidden="true"><use href="./sprite.svg#icon-star"></use></svg></label>
+      </fieldset>
+
+      <label class="rating-form-label" for="rating-email">Email</label>
+      <input class="rating-form-input" id="rating-email" name="email" type="email" required pattern="^\w+(\.\w+)?@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$" placeholder="Email">
+
+      <label class="rating-form-label" for="rating-review">Your review</label>
+      <textarea class="rating-form-input rating-form-review" id="rating-review" name="review" required placeholder="Your comment"></textarea>
+
+      <p class="rating-form-error" role="alert" hidden></p>
+      <button class="rating-form-submit" type="submit">Send</button>
+    </form>
+  </section>
+</div>
+</div>

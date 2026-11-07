@@ -14,8 +14,14 @@ export const EVENTS = {
   FILTER_CHANGED: 'yourenergy:filter-changed',
   CATEGORY_SELECTED: 'yourenergy:category-selected',
   SEARCH_SUBMITTED: 'yourenergy:search-submitted',
-  EXERCISE_OPEN: 'yourenergy:exercise-open',         
-  FAVORITES_CHANGED: 'yourenergy:favorites-changed',   
+  EXERCISE_OPEN: 'exercise:open',
+  FAVORITES_CHANGED: 'yourenergy:favorites-changed',
+};
+
+export const EXERCISE_MODAL = {
+  API_URL: 'https://your-energy.b.goit.study/api/exercises/',
+  FAVORITES_KEY: 'energy-favorites',
+  FAVORITES_CHANGED_EVENT: 'favorites:changed',
 };
 
 export const PAGINATION = {
