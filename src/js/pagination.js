@@ -42,45 +42,26 @@ export function renderPagination({
     `;
 
   container.querySelectorAll('.pagination-btn').forEach(btn => {
-    btn.addEventListener('click', async () => {
-      // currentPage = Number(btn.dataset.page);
-      // await fetchAndRenderCategories();
-      container.querySelectorAll('.pagination-btn').forEach(btn => {
-        btn.addEventListener('click', () => {
-          onPageChange(Number(btn.dataset.page));
-        });
-      });
-
-      container
-        .querySelectorAll('.pagination-nav-btn:not([disabled])')
-        .forEach(btn => {
-          btn.addEventListener('click', () => {
-            const action = btn.dataset.action;
-            let nextPage = currentPage;
-
-            if (action === 'first') nextPage = 1;
-            else if (action === 'prev') nextPage = Math.max(1, currentPage - 1);
-            else if (action === 'next')
-              nextPage = Math.min(totalPages, currentPage + 1);
-            else if (action === 'last') nextPage = totalPages;
-
-            onPageChange(nextPage);
-          });
-        });
+    btn.addEventListener('click', () => {
+      const page = Number(btn.dataset.page);
+      if (page !== currentPage) onPageChange(page);
     });
   });
 
   container
     .querySelectorAll('.pagination-nav-btn:not([disabled])')
     .forEach(btn => {
-      btn.addEventListener('click', async () => {
+      btn.addEventListener('click', () => {
         const action = btn.dataset.action;
-        if (action === 'first') currentPage = 1;
-        else if (action === 'prev') currentPage = Math.max(1, currentPage - 1);
+        let nextPage = currentPage;
+
+        if (action === 'first') nextPage = 1;
+        else if (action === 'prev') nextPage = Math.max(1, currentPage - 1);
         else if (action === 'next')
-          currentPage = Math.min(totalPages, currentPage + 1);
-        else if (action === 'last') currentPage = totalPages;
-        await fetchAndRenderCategories();
+          nextPage = Math.min(totalPages, currentPage + 1);
+        else if (action === 'last') nextPage = totalPages;
+
+        if (nextPage !== currentPage) onPageChange(nextPage);
       });
     });
 }

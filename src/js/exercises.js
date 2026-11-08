@@ -18,6 +18,12 @@ let currentFilter = '';
 let currentCategory = '';
 let currentKeyword = '';
 let currentPage = 1;
+let latestRequestId = 0;
+
+document.addEventListener(EVENTS.FILTER_CHANGED, () => {
+    latestRequestId++;
+    currentCategory = '';
+});
 
 const getLimit = () => window.innerWidth >= 768 ? PAGINATION.EXERCISES_DESKTOP : PAGINATION.EXERCISES_MOBILE;
 
@@ -44,6 +50,7 @@ document.addEventListener(EVENTS.CATEGORY_SELECTED, async (event) => {
 });
 
 async function fetchAndRenderExercises() {
+    const requestId = ++latestRequestId;
     try {
         showLoader();
 
@@ -59,6 +66,8 @@ async function fetchAndRenderExercises() {
 
         const data = await getExercises(queryParams);
 
+        if (requestId !== latestRequestId) return;
+
         if (!data || data.results.length === 0) {
             exercisesList.innerHTML = '<p class="no-results">Sorry, no exercises found.</p>';
             paginationContainer.innerHTML = '';
@@ -68,6 +77,7 @@ async function fetchAndRenderExercises() {
         renderExerciseCards(data.results);
         renderExercisesPagination(data.totalPages);
     } catch (err) {
+        if (requestId !== latestRequestId) return;
         console.error(err);
     } finally {
         hideLoader();

@@ -1,6 +1,5 @@
 import { getFilters } from './api.js';
-import { EVENTS } from './constants.js';
-import { showLoader, hideLoader } from './loader.js';
+import { EVENTS, PAGINATION } from './constants.js';
 import { renderPagination } from './pagination.js';
 
 const categoriesContainer = document.getElementById('categories-container');
@@ -8,9 +7,28 @@ const categoriesWrapper = document.querySelector('.categories-wrapper');
 const exercisesWrapper = document.querySelector('.exercises-wrapper');
 const searchForm = document.getElementById('search-form');
 const paginationContainer = document.getElementById('pagination-container');
+const categoriesStatus = document.getElementById('categories-status');
 
 let currentFilter = 'Muscles';
 let currentPage = 1;
+let latestRequestId = 0;
+let requestedLimit;
+
+const getLimit = () => window.innerWidth < 768
+    ? PAGINATION.CATEGORIES_MOBILE
+    : PAGINATION.CATEGORIES_DESKTOP;
+
+function setCategoriesLoading(isLoading) {
+    categoriesWrapper.setAttribute('aria-busy', String(isLoading));
+    paginationContainer.classList.toggle('pagination--loading', isLoading);
+    paginationContainer.inert = isLoading;
+}
+
+document.addEventListener(EVENTS.CATEGORY_SELECTED, () => {
+    latestRequestId++;
+    setCategoriesLoading(false);
+    categoriesStatus.textContent = '';
+});
 
 document.addEventListener(EVENTS.FILTER_CHANGED, async (e) => {
     currentFilter = e.detail.filter;
@@ -29,30 +47,52 @@ document.addEventListener(EVENTS.FILTER_CHANGED, async (e) => {
 });
 
 async function fetchAndRenderCategories() {
+    const requestId = ++latestRequestId;
+    const filter = currentFilter;
+    const page = currentPage;
+    const limit = getLimit();
+    requestedLimit = limit;
+
+    setCategoriesLoading(true);
+    categoriesStatus.textContent = `Loading ${filter.toLowerCase()} categories.`;
+    categoriesContainer.innerHTML = Array.from({ length: limit }, () =>
+        '<li class="category-item category-skeleton" aria-hidden="true"></li>'
+    ).join('');
+
     try {
-        showLoader();
-
-        const isMobile = window.innerWidth < 768;
-        const limit = isMobile ? 9 : 12;
-
         const data = await getFilters({
-            filter: currentFilter,
-            page: currentPage,
+            filter,
+            page,
             limit,
         });
 
+        if (requestId !== latestRequestId) return;
+
         if (!data || data.results.length === 0) {
-            categoriesContainer.innerHTML = '<p class="no-results">No categories found.</p>';
+            categoriesContainer.innerHTML = '<li class="categories-message no-results">No categories found.</li>';
             paginationContainer.innerHTML = '';
+            categoriesStatus.textContent = 'No categories found.';
             return;
         }
 
         renderCategoryCards(data.results);
         renderCategoriesPagination(data.totalPages);
+        categoriesStatus.textContent = `${filter} categories loaded. Page ${page}.`;
     } catch (err) {
+        if (requestId !== latestRequestId) return;
         console.error(err);
+        paginationContainer.innerHTML = '';
+        categoriesContainer.innerHTML = `
+            <li class="categories-message">
+                <p>Unable to load categories. Please try again.</p>
+                <button class="categories-retry-btn" type="button">Retry</button>
+            </li>
+        `;
+        categoriesContainer.querySelector('.categories-retry-btn')
+            .addEventListener('click', fetchAndRenderCategories);
+        categoriesStatus.textContent = 'Unable to load categories. Please try again.';
     } finally {
-        hideLoader();
+        if (requestId === latestRequestId) setCategoriesLoading(false);
     }
 }
 
@@ -100,7 +140,8 @@ let resizeTimer;
 window.addEventListener('resize', () => {
     clearTimeout(resizeTimer);
     resizeTimer = setTimeout(() => {
-        if (categoriesWrapper && !categoriesWrapper.classList.contains('visually-hidden')) {
+        if (categoriesWrapper && !categoriesWrapper.classList.contains('visually-hidden')
+            && getLimit() !== requestedLimit) {
             currentPage = 1;
             fetchAndRenderCategories();
         }

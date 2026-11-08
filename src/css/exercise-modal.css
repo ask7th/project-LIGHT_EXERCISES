@@ -245,6 +245,13 @@ body.exercise-modal-open {
   font-size: 13px;
 }
 
+.exercise-modal-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 20px;
+}
+
 .exercise-modal-favorite {
   display: flex;
   width: 100%;
@@ -252,7 +259,6 @@ body.exercise-modal-open {
   align-items: center;
   justify-content: center;
   gap: 8px;
-  margin-top: 20px;
   padding: 10px 16px;
   border: 0;
   border-radius: 30px;
@@ -270,7 +276,6 @@ body.exercise-modal-open {
   min-height: 42px;
   align-items: center;
   justify-content: center;
-  margin-top: 12px;
   padding: 10px 16px;
   border: 1px solid rgb(244 244 244 / 20%);
   border-radius: 30px;
@@ -458,6 +463,26 @@ body.exercise-modal-open {
 
   .exercise-modal-details {
     padding-top: 5px;
+  }
+
+  .exercise-modal-actions {
+    flex-direction: row;
+    gap: 8px;
+  }
+
+  .exercise-modal-favorite,
+  .exercise-modal-rate {
+    width: auto;
+    padding: 10px 12px;
+    white-space: nowrap;
+  }
+
+  .exercise-modal-favorite {
+    flex: 1;
+  }
+
+  .exercise-modal-rate {
+    flex-shrink: 0;
   }
 
   .exercise-modal-rating-view {
