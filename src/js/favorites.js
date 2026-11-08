@@ -1,12 +1,16 @@
 /** Favorites page; uses the team's shared exercise modal and quote. */
 import { EXERCISE_MODAL, EVENTS } from './constants.js';
 import { spriteHref } from './sprite.js';
+import { renderPagination } from './pagination.js';
 const STORAGE_KEY = EXERCISE_MODAL.FAVORITES_KEY;
+const PER_PAGE = 10;
+let currentPage = 1;
 
 const list = document.querySelector('#favorites-list');
 const empty = document.querySelector('#favorites-empty');
 const count = document.querySelector('#favorites-count');
 const message = document.querySelector('#favorites-message');
+const paginationContainer = document.querySelector('#favorites-pagination');
 
 /** The same fields expected by the shared favorites-storage module. */
 function getFavorites() {
@@ -141,11 +145,54 @@ function createExerciseCard(exercise) {
 
 function renderFavorites() {
   showMessage('');
+
   const items = getFavorites();
+
+  const totalPages = Math.ceil(items.length / PER_PAGE);
+
+  if (currentPage > totalPages) {
+    currentPage = Math.max(1, totalPages);
+  }
+
   count.textContent = formatCount(items.length);
+
   empty.hidden = items.length > 0;
   list.hidden = items.length === 0;
+
+  if (items.length === 0) {
+    paginationContainer.innerHTML = '';
+    list.replaceChildren();
+    return;
+  }
+
   list.replaceChildren(...items.map(createExerciseCard));
+
+  renderPagination({
+    container: paginationContainer,
+    currentPage,
+    totalPages,
+    onPageChange: page => {
+      currentPage = page;
+      renderFavorites();
+    },
+  });
+
+  const startIndex = (currentPage - 1) * PER_PAGE;
+  const endIndex = startIndex + PER_PAGE;
+
+  const paginatedItems = items.slice(startIndex, endIndex);
+
+   list.replaceChildren(...paginatedItems.map(createExerciseCard));
+
+  renderPagination({
+    container: paginationContainer,
+    currentPage,
+    totalPages,
+    onPageChange: page => {
+      currentPage = page;
+      renderFavorites();
+    },
+  });  
 }
 
 function removeFavorite(id) {
