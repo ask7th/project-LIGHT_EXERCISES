@@ -3,7 +3,6 @@ body:has(#favorites-view:not([hidden])) { background: #f4f4f4; }
 
 #favorites-view {
   width: 100%;
-  max-width: 1440px;
   min-width: 0;
   padding-top: 90px;
   padding-bottom: 90px;
