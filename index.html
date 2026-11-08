@@ -17,7 +17,7 @@
     />
     <script type="module" crossorigin src="/project-LIGHT_EXERCISES/index.js"></script>
     <link rel="modulepreload" crossorigin href="/project-LIGHT_EXERCISES/assets/vendor-DzSg3hP9.js">
-    <link rel="stylesheet" crossorigin href="/project-LIGHT_EXERCISES/assets/index-DmBQvP48.css">
+    <link rel="stylesheet" crossorigin href="/project-LIGHT_EXERCISES/assets/index-BIHhOV3y.css">
   </head>
   <body>
     <header class="header">
@@ -236,7 +236,9 @@
 
       <div class="exercises-content">
 
-        <div class="categories-wrapper" data-section="categories">
+        <p id="categories-status" class="visually-hidden" role="status" aria-atomic="true"></p>
+
+        <div class="categories-wrapper" data-section="categories" aria-busy="false">
           <ul class="categories-list" id="categories-container" role="list">
           </ul>
         </div>
@@ -501,13 +503,15 @@
 
       <p class="exercise-modal-description"></p>
       <p class="exercise-modal-error" role="status" hidden></p>
-      <button class="exercise-modal-favorite" type="button" aria-pressed="false">
-        <span class="exercise-modal-favorite-label">Add to favorites</span>
-        <svg viewBox="0 0 24 24" aria-hidden="true">
-          <use href="/project-LIGHT_EXERCISES/assets/sprite-BjJssYAe.svg#icon-heart" data-favorite-icon></use>
-        </svg>
-      </button>
-      <button class="exercise-modal-rate" type="button">Give a rating</button>
+      <div class="exercise-modal-actions">
+        <button class="exercise-modal-favorite" type="button" aria-pressed="false">
+          <span class="exercise-modal-favorite-label">Add to favorites</span>
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <use href="/project-LIGHT_EXERCISES/assets/sprite-BjJssYAe.svg#icon-heart" data-favorite-icon></use>
+          </svg>
+        </button>
+        <button class="exercise-modal-rate" type="button">Give a rating</button>
+      </div>
     </section>
   </div>
 
