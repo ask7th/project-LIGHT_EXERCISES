@@ -1,0 +1,38 @@
+<section class="exercises" id="exercises" data-exercises>
+  <div class="container">
+    <div class="exercises-heading">
+      <button class="exercises-back" type="button" data-exercises-back>
+        Exercises
+      </button>
+      <p class="exercises-category" data-current-category hidden></p>
+    </div>
+
+    <div class="exercises-controls">
+      <!-- Filter buttons go into [data-filter-panel]. -->
+      <div data-filter-panel></div>
+      <form class="exercise-search" data-exercise-search hidden>
+        <label class="exercise-search-label">
+          <span class="visually-hidden">Search exercises</span>
+          <input
+            type="search"
+            name="keyword"
+            placeholder="Search"
+            autocomplete="off"
+          />
+        </label>
+        <button class="exercise-search-btn" type="submit" aria-label="Search">
+          <svg width="18" height="18" aria-hidden="true">
+            <use href="#icon-search"></use>
+          </svg>
+        </button>
+      </form>
+    </div>
+
+    <!-- Category cards go into [data-categories]. -->
+    <ul class="categories" data-categories></ul>
+
+    <p class="exercises-message" data-exercises-message hidden></p>
+    <ul class="exercise-list" data-exercise-list></ul>
+    <nav class="pagination" data-pagination aria-label="Exercises pages" hidden></nav>
+  </div>
+</section>

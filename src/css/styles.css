@@ -11,4 +11,6 @@
 
 /* Sections style */
 @import url('./header.css');
+@import url('./exercises.css');
+@import url('./modal-exercise.css');
 @import url('./footer.css');
