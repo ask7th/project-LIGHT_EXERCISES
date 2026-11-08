@@ -1,0 +1,235 @@
+/* Favorites only; preserve shared design system components. */
+body:has(#favorites-view:not([hidden])) { background: #f4f4f4; }
+
+#favorites-view {
+  width: 100%;
+  max-width: 1440px;
+  min-width: 0;
+  padding-top: 90px;
+  padding-bottom: 90px;
+  min-height: 700px;
+  font-family: 'DM Sans', sans-serif;
+  color: #242424;
+}
+#favorites-view .favorites-title {
+  margin: 0 0 32px;
+  font: 400 44px/1.15 'DM Sans', sans-serif;
+  letter-spacing: -0.02em;
+}
+#favorites-view .favorites-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 494px) minmax(0, 1fr);
+  gap: 32px;
+  align-items: start;
+}
+#favorites-view .favorites-aside { display: grid; align-content: start; gap: 16px; min-width: 0; }
+#favorites-view .quote-panel {
+  position: relative;
+  box-sizing: border-box;
+  display: grid;
+  grid-template-columns: 34px minmax(0, 1fr);
+  column-gap: 16px;
+  align-content: start;
+  width: 100%;
+  min-height: 230px;
+  padding: 40px;
+  border-radius: 20px;
+  background: #242424;
+  color: #f4f4f4;
+}
+#favorites-view .quote-sport-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 32px;
+}
+#favorites-view .quote-sport-icon svg {
+  display: block;
+  width: 32px;
+  height: 32px;
+}
+#favorites-view .quote-copy {
+  min-width: 0;
+  padding-right: 0;
+}
+#favorites-view .quote-copy h2 {
+  margin: 0 0 4px;
+  color: #f4f4f4;
+  font: 500 24px/32px 'DM Sans', sans-serif;
+  letter-spacing: 0;
+}
+#favorites-view .quote-text {
+  max-width: 364px;
+  margin: 0 0 16px;
+  color: rgba(244, 244, 244, .6);
+  font: 400 14px/18px 'DM Sans', sans-serif;
+  letter-spacing: 0;
+}
+#favorites-view .quote-author {
+  margin: 0;
+  color: #f4f4f4;
+  font: 400 16px/24px 'DM Sans', sans-serif;
+}
+#favorites-view .quote-mark {
+  position: absolute;
+  top: 40px;
+  right: 40px;
+  width: 24px;
+  height: 24px;
+  color: #f4f4f4;
+}
+#favorites-view .daily-row { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 16px; }
+#favorites-view .daily-panel {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-width: 0;
+  height: 141px;
+  padding: 16px;
+  border-radius: 15px;
+  background: #fff;
+}
+#favorites-view .daily-icon { display: inline-flex; width: 20px; height: 20px; margin-bottom: 16px; }
+#favorites-view .daily-icon svg { width: 100%; height: 100%; }
+#favorites-view .daily-number { margin: 0 0 4px; font: 400 24px/32px 'DM Sans', sans-serif; }
+#favorites-view .daily-number span { font-size: 14px; line-height: 20px; }
+#favorites-view .daily-label { margin: 0; font: 400 14px/18px 'DM Sans', sans-serif; color: #8b8b8b; }
+#favorites-view .daily-picture { display: block; height: 141px; min-width: 0; overflow: hidden; border-radius: 15px; }
+#favorites-view .daily-picture img { display: block; width: 100%; height: 100%; object-fit: cover; }
+#favorites-view .favorites-content { min-width: 0; }
+#favorites-view .favorites-sr-only {
+  position: absolute; width: 1px; height: 1px; overflow: hidden;
+  clip: rect(0,0,0,0); clip-path: inset(50%); white-space: nowrap;
+}
+#favorites-view .exercise-grid { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 32px 40px; }
+#favorites-view .exercise-card {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  height: 141px;
+  padding: 16px;
+  border-radius: 15px;
+  background: #fff;
+}
+#favorites-view .exercise-card-top, #favorites-view .exercise-card-actions { display: flex; align-items: center; gap: 8px; }
+#favorites-view .exercise-card-top { justify-content: space-between; min-height: 24px; }
+#favorites-view .workout-badge {
+  display: inline-flex; align-items: center;
+  min-height: 24px; padding: 2px 8px;
+  border: 1px solid #242424; border-radius: 100px;
+  font: 400 12px/18px 'DM Sans', sans-serif;
+}
+#favorites-view .remove-button, #favorites-view .start-button {
+  border: 0; background: none; color: #242424; cursor: pointer;
+}
+#favorites-view .remove-button {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 24px; height: 24px; padding: 3px;
+}
+#favorites-view .remove-button svg { width: 18px; height: 18px; }
+#favorites-view .start-button {
+  display: inline-flex; align-items: center; justify-content: center;
+  flex: 0 0 auto; gap: 8px; min-height: 24px; padding: 0;
+  font: 400 16px/24px 'DM Sans', sans-serif;
+  white-space: nowrap;
+}
+#favorites-view .start-arrow { width: 24px; height: 24px; flex: 0 0 24px; }
+#favorites-view .remove-button:hover, #favorites-view .start-button:hover { color: #777; }
+#favorites-view .exercise-title-row { display: flex; align-items: center; gap: 16px; min-width: 0; margin-top: 27px; }
+#favorites-view .exercise-sport-icon {
+  display: inline-flex; flex: 0 0 32px; align-items: center; justify-content: center;
+  width: 32px; height: 32px; border-radius: 50%; background: #242424;
+}
+#favorites-view .exercise-sport-icon svg { display: block; width: 22px; height: 22px; object-fit: contain; }
+#favorites-view .exercise-name {
+  min-width: 0; margin: 0; overflow: hidden;
+  text-overflow: ellipsis; white-space: nowrap;
+  font: 400 24px/32px 'DM Sans', sans-serif;
+  color: #242424;
+}
+#favorites-view .exercise-stats { display: flex; align-items: center; gap: 16px; min-width: 0; margin-top: 8px; overflow: hidden; }
+#favorites-view .exercise-stats p {
+  display: inline-flex; flex: 0 1 auto; min-width: 0; gap: 4px;
+  margin: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+  font: 400 12px/18px 'DM Sans', sans-serif;
+  color: rgba(36,36,36,.4);
+}
+#favorites-view .exercise-stats strong { flex-shrink: 0; color: #242424; font: inherit; }
+#favorites-view .favorites-message {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+#favorites-view .empty-state {
+  display: flex; align-items: center; justify-content: center;
+  min-height: 355px; padding: 0 8%; text-align: center;
+}
+#favorites-view .empty-state p { max-width: 550px; margin: 0; font: 400 18px/24px 'DM Sans', sans-serif; }
+#favorites-view [hidden] { display: none !important; }
+
+/* Tablet Figma: 768px frame / 32px gutters / 704px content. */
+@media (min-width: 768px) and (max-width: 1199px) {
+  #favorites-view { padding-top: 90px; min-height: 0; }
+  #favorites-view .favorites-layout { grid-template-columns: minmax(0,1fr); gap: 64px; }
+  #favorites-view .quote-panel { min-height: 220px; }
+  #favorites-view .quote-text { max-width: 574px; }
+  #favorites-view .exercise-grid { gap: 32px 16px; }
+  #favorites-view .empty-state { min-height: 240px; }
+}
+
+/* Mobile Figma: 375px frame / 20px gutters / one exercise per row. */
+@media (max-width: 767px) {
+  #favorites-view { padding-top: 70px; padding-bottom: 60px; min-height: 0; }
+  #favorites-view .favorites-title { margin-bottom: 24px; font-size: 32px; line-height: 40px; }
+  #favorites-view .favorites-layout { grid-template-columns: minmax(0,1fr); gap: 40px; }
+  #favorites-view .favorites-aside { gap: 20px; }
+  #favorites-view .quote-panel { min-height: 200px; padding: 20px; border-radius: 20px; }
+  #favorites-view .quote-copy h2 { font-size: 20px; line-height: 28px; }
+  #favorites-view .quote-panel { grid-template-columns: 32px minmax(0, 1fr); }
+  #favorites-view .quote-sport-icon { width: 32px; height: 32px; }
+  #favorites-view .quote-mark { top: 20px; right: 20px; }
+  #favorites-view .quote-text { margin-bottom: 12px; font-size: 14px; line-height: 18px; }
+  #favorites-view .quote-author { font-size: 14px; line-height: 20px; }
+  #favorites-view .daily-row { grid-template-columns: minmax(0,1fr); gap: 20px; }
+  #favorites-view .daily-panel { height: 116px; padding: 20px; border-radius: 20px; }
+  #favorites-view .daily-icon { margin-bottom: 12px; }
+  #favorites-view .daily-picture { height: 116px; border-radius: 20px; }
+  #favorites-view .exercise-grid { grid-template-columns: minmax(0,1fr); gap: 20px; }
+  #favorites-view .exercise-card { height: 141px; border-radius: 20px; }
+  #favorites-view .exercise-title-row { margin-top: 27px; }
+  #favorites-view .exercise-name { font-size: 22px; line-height: 32px; }
+  #favorites-view .exercise-stats { gap: 12px; }
+  #favorites-view .empty-state { min-height: 0; padding: 40px 4px; }
+  #favorites-view .empty-state p { font-size: 16px; line-height: 24px; }
+}
+
+/* Favorites quote alignment: remove inherited offsets from shared quote styles. */
+#favorites-view .quote-copy {
+  padding: 0;
+  margin: 0;
+  min-width: 0;
+}
+#favorites-view .quote-copy > h2,
+#favorites-view .quote-copy > .quote-text,
+#favorites-view .quote-copy > .quote-author {
+  margin-left: 0;
+  padding-left: 0;
+  text-indent: 0;
+  transform: none;
+  box-sizing: border-box;
+}
+#favorites-view .quote-copy > .quote-text,
+#favorites-view .quote-copy > .quote-author {
+  width: 100%;
+  max-width: 100%;
+}
+#favorites-view .exercise-sport-icon svg {
+  color: #f4f4f4;
+}
