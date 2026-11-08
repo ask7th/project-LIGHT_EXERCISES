@@ -160,6 +160,7 @@
     align-self: end;
     max-width: 205px;
     margin-bottom: 32px;
+    flex-wrap: wrap;
   }
 
   .hero-img {
