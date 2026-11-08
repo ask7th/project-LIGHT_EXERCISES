@@ -230,6 +230,14 @@ body:has(#favorites-view:not([hidden])) { background: #f4f4f4; }
   width: 100%;
   max-width: 100%;
 }
+
+/* Favorites SVG icons from the shared sprite */
+#favorites-view .remove-button svg {
+  fill: none;
+  stroke: currentColor;
+}
+
 #favorites-view .exercise-sport-icon svg {
-  color: #f4f4f4;
+  fill: #f4f4f4;
+  stroke: none;
 }
