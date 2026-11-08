@@ -4,7 +4,7 @@ body:has(#favorites-view:not([hidden])) { background: #f4f4f4; }
 #favorites-view {
   width: 100%;
   min-width: 0;
-  padding-top: 90px;
+  padding-top: 64px;
   padding-bottom: 90px;
   min-height: 700px;
   font-family: 'DM Sans', sans-serif;
@@ -96,8 +96,8 @@ body:has(#favorites-view:not([hidden])) { background: #f4f4f4; }
 #favorites-view .daily-number span { font-size: 14px; line-height: 20px; }
 #favorites-view .daily-label { margin: 0; font: 400 14px/18px 'DM Sans', sans-serif; color: #8b8b8b; }
 #favorites-view .daily-picture { display: block; height: 141px; min-width: 0; overflow: hidden; border-radius: 15px; }
-#favorites-view .daily-picture img { display: block; width: 100%; height: 100%; object-fit: cover; }
-#favorites-view .favorites-content { min-width: 0; }
+#favorites-view .daily-picture img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: center center; }
+#favorites-view .favorites-content { min-width: 0; width: 100%; }
 #favorites-view .favorites-sr-only {
   position: absolute; width: 1px; height: 1px; overflow: hidden;
   clip: rect(0,0,0,0); clip-path: inset(50%); white-space: nowrap;
@@ -174,8 +174,8 @@ body:has(#favorites-view:not([hidden])) { background: #f4f4f4; }
 #favorites-view [hidden] { display: none !important; }
 
 /* Tablet Figma: 768px frame / 32px gutters / 704px content. */
-@media (min-width: 768px) and (max-width: 1199px) {
-  #favorites-view { padding-top: 90px; min-height: 0; }
+@media (min-width: 768px) and (max-width: 1439px) {
+  #favorites-view { padding-top: 64px; min-height: 0; }
   #favorites-view .favorites-layout { grid-template-columns: minmax(0,1fr); gap: 64px; }
   #favorites-view .quote-panel { min-height: 220px; }
   #favorites-view .quote-text { max-width: 574px; }
@@ -185,7 +185,7 @@ body:has(#favorites-view:not([hidden])) { background: #f4f4f4; }
 
 /* Mobile Figma: 375px frame / 20px gutters / one exercise per row. */
 @media (max-width: 767px) {
-  #favorites-view { padding-top: 70px; padding-bottom: 60px; min-height: 0; }
+  #favorites-view { padding-top: 48px; padding-bottom: 60px; min-height: 0; }
   #favorites-view .favorites-title { margin-bottom: 24px; font-size: 32px; line-height: 40px; }
   #favorites-view .favorites-layout { grid-template-columns: minmax(0,1fr); gap: 40px; }
   #favorites-view .favorites-aside { gap: 20px; }
@@ -239,4 +239,13 @@ body:has(#favorites-view:not([hidden])) { background: #f4f4f4; }
 #favorites-view .exercise-sport-icon svg {
   fill: #f4f4f4;
   stroke: none;
+}
+
+#favorites-view .start-arrow {
+  fill: none;
+  stroke: currentColor;
+}
+/* Figma mobile gutters, scoped to Favorites only. */
+@media (max-width: 767px) {
+  #favorites-view.container { padding-left: 20px; padding-right: 20px; }
 }

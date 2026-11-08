@@ -1,5 +1,6 @@
 /** Favorites page; uses the team's shared exercise modal and quote. */
 import { EXERCISE_MODAL, EVENTS } from './constants.js';
+import { spriteHref } from './sprite.js';
 const STORAGE_KEY = EXERCISE_MODAL.FAVORITES_KEY;
 
 const list = document.querySelector('#favorites-list');
@@ -56,7 +57,7 @@ function createElement(tag, className, text) {
   return el;
 }
 
-function safeText(value, fallback = 'â€”') {
+function safeText(value, fallback = '-') {
   return value === undefined || value === null || value === ''
     ? fallback
     : String(value);
@@ -74,7 +75,7 @@ function createExerciseCard(exercise) {
   trash.setAttribute('height', '18');
   trash.setAttribute('aria-hidden', 'true');
   const trashUse = document.createElementNS('http://www.w3.org/2000/svg', 'use');
-  trashUse.setAttribute('href', './images/sprite.svg#icon-trash');
+  trashUse.setAttribute('href', spriteHref('icon-trash'));
   trash.append(trashUse);
   remove.append(trash);
   remove.type = 'button';
@@ -92,14 +93,9 @@ function createExerciseCard(exercise) {
   arrow.setAttribute('height', '24');
   arrow.setAttribute('aria-hidden', 'true');
   arrow.classList.add('start-arrow');
-  const arrowPath = document.createElementNS('http://www.w3.org/2000/svg', 'path');
-  arrowPath.setAttribute('d', 'M4 12H20M13 5L20 12L13 19');
-  arrowPath.setAttribute('fill', 'none');
-  arrowPath.setAttribute('stroke', 'currentColor');
-  arrowPath.setAttribute('stroke-width', '1.8');
-  arrowPath.setAttribute('stroke-linecap', 'round');
-  arrowPath.setAttribute('stroke-linejoin', 'round');
-  arrow.append(arrowPath);
+  const arrowUse = document.createElementNS('http://www.w3.org/2000/svg', 'use');
+  arrowUse.setAttribute('href', spriteHref('icon-favorites-start-arrow'));
+  arrow.append(arrowUse);
   start.append(startLabel, arrow);
   start.type = 'button';
   start.dataset.action = 'open';
@@ -118,7 +114,7 @@ function createExerciseCard(exercise) {
   sportImg.setAttribute('height', '22');
   sportImg.setAttribute('aria-hidden', 'true');
   const runnerUse = document.createElementNS('http://www.w3.org/2000/svg', 'use');
-  runnerUse.setAttribute('href', './images/sprite.svg#icon-run');
+  runnerUse.setAttribute('href', spriteHref('icon-run'));
   sportImg.append(runnerUse);
   sport.append(sportImg);
   sport.setAttribute('aria-hidden', 'true');
@@ -144,6 +140,7 @@ function createExerciseCard(exercise) {
 }
 
 function renderFavorites() {
+  showMessage('');
   const items = getFavorites();
   count.textContent = formatCount(items.length);
   empty.hidden = items.length > 0;

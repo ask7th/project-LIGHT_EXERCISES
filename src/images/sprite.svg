@@ -96,6 +96,9 @@
 <path d="M28 18.6666H4" stroke="#242424" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
 <path d="M28 24H4" stroke="#242424" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
 </symbol>
+<symbol id="icon-favorites-start-arrow" viewBox="0 0 24 24">
+<path d="M4 12H20M13 5L20 12L13 19" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path>
+</symbol>
 </defs>
 
 <symbol id="icon-logo" viewBox="0 0 132 24">
